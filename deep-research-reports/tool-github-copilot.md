@@ -97,7 +97,7 @@ GitHub offers five distinct Copilot plans, each with different feature availabil
 | **Business**   | $19/user/month | Unlimited              | Unlimited         | 300/user                | Included + some premium | Team/organizational deployment |
 | **Enterprise** | $39/user/month | Unlimited              | Unlimited         | 1,000/user              | Full access             | Large-scale governance         |
 
-"Premium requests" are usage units consuming against quota. Certain features (e.g., use of advanced models like Claude Opus or GPT-5-Codex) consume premium requests at different rates. Free and Pro tier users can purchase additional premium requests at $0.04 USD per request.
+"Premium requests" are usage units consuming against quota. Certain features (e.g., use of advanced models like Claude Opus 4.5 or gpt-5-codex) consume premium requests at different rates. Free and Pro tier users can purchase additional premium requests at $0.04 USD per request.
 
 Students, teachers, and open source maintainers qualify for free Pro tier access.
 
@@ -107,11 +107,11 @@ A distinguishing operational capability of Copilot is user-selectable language m
 
 **Available Models (as of January 2026):**
 
-For **Inline Code Completions**: GPT-4.1-Copilot (default), GPT-5-Codex, GPT-5.1-Codex, GPT-5.1-Codex-Mini, Grok Code Fast 1, Raptor mini.
+For **Inline Code Completions**: gpt-4.1-copilot (default), gpt-5-codex, gpt-5.1-codex, gpt-5.1-codex-mini, Grok Code Fast 1, Raptor mini.
 
-For **Copilot Chat**: Claude Haiku 4.5, Claude Sonnet 4.5, Claude Opus 4.5, GPT-5, GPT-5-mini, GPT-5-Codex, GPT-5.1-Codex, Grok Code Fast 1, Raptor mini.
+For **Copilot Chat**: Claude Haiku 4.5, Claude Sonnet 4.5, Claude Opus 4.5, gpt-5, gpt-5-mini, gpt-5-codex, gpt-5.1-codex, Grok Code Fast 1, Raptor mini.
 
-For **Copilot Coding Agent**: Currently locked to Claude Sonnet 4.5 for Business/Enterprise users; Pro/Pro+ users can select from available models.
+For **Copilot Coding Agent**: Business/Enterprise plans default to Claude Sonnet 4.5; Pro/Pro+ users can select from available models including Claude Opus 4.5 and other options.
 
 Model selection at individual or organizational level is supported in VS Code, Visual Studio, and JetBrains IDEs. The "Auto" selection mode leverages GitHub's heuristic to reduce rate limiting and select optimal models based on task complexity.
 
@@ -232,7 +232,7 @@ Use Copilot Chat to identify performance bottlenecks, suggest algorithmic improv
 Create Copilot Spaces for each project containing README, architecture diagrams, and key files. New team members can ask Copilot questions grounded in the Space, reducing context-switching and ramp-up time.
 
 **Multi-Model Experimentation**
-For complex tasks (e.g., LLM-based code analysis), experiment with different models (Claude Sonnet vs. GPT-5-Codex) to find which performs best on your codebase. Some models favor certain languages or coding paradigms.
+For complex tasks (e.g., LLM-based code analysis), experiment with different models (Claude Sonnet 4.5 vs. gpt-5-codex) to find which performs best on your codebase. Some models favor certain languages or coding paradigms.
 
 **Audit and Compliance**
 Organizations can review Copilot usage via audit logs and usage dashboards. Track which features are used, by whom, and when. Use this data to identify bottlenecks in adoption or misuse patterns.

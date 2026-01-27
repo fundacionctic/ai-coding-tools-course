@@ -182,21 +182,21 @@ The `.cursorrules` file in project root is still supported but deprecated. Migra
 Cursor provides access to multiple frontier models and allows custom API keys for self-hosted or proprietary deployments.
 
 **Available models** (as of January 2026):
-- Claude 4 Sonnet, Claude 4 Opus (Anthropic)
-- GPT-4.1, GPT-5.2 (OpenAI)
+- Claude Sonnet 4.5, Claude Opus 4.5 (Anthropic)
+- gpt-4.1, gpt-5.2 (OpenAI)
 - Gemini 2.5 Pro, Gemini 2.5 Flash (Google)
 - o3 (OpenAI reasoning model)
 - Grok 4 (xAI)
 
 **Model selection strategy**:
 
-| Model               | Strengths                                                   | Best For                                                                          |
-| ------------------- | ----------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| **Claude 4 Sonnet** | Fast, clear instructions, strong directionality             | Precise edits, feature implementation when you know exactly what you want         |
-| **Claude 4 Opus**   | Deep reasoning, asks clarifying questions                   | Complex refactoring, architectural decisions, ambiguous requirements              |
-| **Gemini 2.5 Pro**  | Large context window (2M tokens), confident decision-making | Processing entire large codebases, multi-file architectural analysis              |
-| **o3**              | Reasoning-focused, slowest but most capable                 | Solving difficult algorithmic problems, hard-to-debug production issues           |
-| **Auto**            | Model selection based on task                               | Default choice; detects performance degradation and switches models automatically |
+| Model                  | Strengths                                                   | Best For                                                                          |
+| ---------------------- | ----------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| **Claude Sonnet 4.5**  | Fast, clear instructions, strong directionality             | Precise edits, feature implementation when you know exactly what you want         |
+| **Claude Opus 4.5**    | Deep reasoning, asks clarifying questions                   | Complex refactoring, architectural decisions, ambiguous requirements              |
+| **Gemini 2.5 Pro**     | Large context window (1M tokens, 2M coming soon), confident decision-making | Processing entire large codebases, multi-file architectural analysis              |
+| **o3**                 | Reasoning-focused, slowest but most capable                 | Solving difficult algorithmic problems, hard-to-debug production issues           |
+| **Auto**               | Model selection based on task                               | Default choice; detects performance degradation and switches models automatically |
 
 **Custom API keys**:
 You can provide your own API keys in `Cursor Settings > Models`. Supported providers:
@@ -208,7 +208,7 @@ You can provide your own API keys in `Cursor Settings > Models`. Supported provi
 **Important limitation**: Custom API keys work only with standard chat models. Features requiring Cursor-specific models (Tab completion, specialized agents) continue using Cursor's built-in infrastructure.
 
 **Context window sizing**:
-By default, Cursor uses a 200k token context window. In Max Mode, context can expand to the full limit supported by the model (2M+ tokens for Gemini 2.5 Pro, 200k for most others). Max Mode is slower and more expensive; use it for large-scale refactoring or when you need your entire codebase in context.
+By default, Cursor uses a 200k token context window. In Max Mode, context can expand to the full limit supported by the model (1M tokens for Gemini 2.5 Pro with 2M in development, 200k for most others). Max Mode is slower and more expensive; use it for large-scale refactoring or when you need your entire codebase in context.
 
 ***
 
@@ -439,9 +439,9 @@ Cursor is designed for codebases up to several million lines, but practical limi
 Cursor includes usage-based pricing aligned with model API rates. For example:
 - $20 of included usage on Pro plan.
 - Overages billed at model provider rates.
-- Using GPT-4.1 (~$15 per million tokens) costs more than Claude 4 Sonnet (~$3 per million tokens).
+- Using gpt-4.1 (~$15 per million tokens) costs more than Claude Sonnet 4.5 (~$3 per million tokens).
 
-**Practical optimization**: Use Claude 4 Sonnet for routine edits; reserve o3 for hard problems. Use Auto mode to let Cursor select the appropriate model.
+**Practical optimization**: Use Claude Sonnet 4.5 for routine edits; reserve o3 for hard problems. Use Auto mode to let Cursor select the appropriate model.
 
 ***
 

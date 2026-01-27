@@ -36,7 +36,7 @@ The model cannot write to parent directories—only the working directory and it
 
 Claude Code supports three primary model tiers, each optimized for different trade-offs: [anthropic](https://www.anthropic.com/news/claude-3-7-sonnet)
 
-**Claude Opus 4.5** is Anthropic's most capable model and the recommended choice for complex, long-running tasks. It achieves 72.5% on SWE-bench (real-world GitHub issues) and 43.2% on Terminal-bench, representing state-of-the-art performance for autonomous coding agent tasks. Opus excels at sustained focus—documented to maintain coherent effort for 30+ hours on complex tasks—and is particularly strong at multi-file refactoring, architectural analysis, and tasks requiring deep reasoning. It also demonstrates improved memory capabilities when given access to local files, enabling it to create and maintain "memory files" for long-term task awareness.
+**Claude Opus 4.5** is Anthropic's most capable model and the recommended choice for complex, long-running tasks. It achieves 72.5% on SWE-bench (real-world GitHub issues) and 43.2% on Terminal-bench in standard mode (50% in high-compute mode), representing state-of-the-art performance for autonomous coding agent tasks. Opus excels at sustained focus—documented to maintain coherent effort for 30+ hours on complex tasks—and is particularly strong at multi-file refactoring, architectural analysis, and tasks requiring deep reasoning. It also demonstrates improved memory capabilities when given access to local files, enabling it to create and maintain "memory files" for long-term task awareness.
 
 **Claude Sonnet 4.5** is Anthropic's recommended default. It achieves 77.2% on SWE-bench Verified (the highest score any model has achieved on this benchmark) while offering 80% faster latency and 60% lower cost than Opus. Sonnet represents the optimal balance for everyday development work and is particularly strong in agentic scenarios.
 
@@ -52,7 +52,7 @@ Sonnet 4.5's 77.2% pass@1 score (solving problems on first attempt) represents t
 
 Pass@3 metrics provide additional insight: Sonnet 4.5 achieves approximately 82% when allowed three retry attempts on the same problem. This suggests that for most failures, Claude can self-correct given the opportunity and feedback from test execution. However, a 23% failure rate even with retries means Claude Code requires human oversight for mission-critical systems. The remaining failures typically involve subtle logic errors, edge cases Claude didn't anticipate, or domain-specific knowledge beyond code patterns.
 
-Terminal-bench (52% for Warp terminal using Claude) measures performance on complex terminal-based tasks including multi-step debugging, system administration, and integration testing—scenarios closer to production engineering. The lower score reflects genuine complexity: these tasks require reasoning across multiple tools, domain knowledge, and recovery from partial failures.
+Terminal-bench measures performance on complex terminal-based tasks including multi-step debugging, system administration, and integration testing—scenarios closer to production engineering. Claude Opus 4 achieves 43.2% in standard mode (50% in high-compute mode) on this benchmark. These lower scores relative to SWE-bench reflect genuine complexity: terminal tasks require reasoning across multiple tools, domain knowledge, and recovery from partial failures.
 
 ***
 
