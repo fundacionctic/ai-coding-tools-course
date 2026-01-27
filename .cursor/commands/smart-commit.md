@@ -6,7 +6,7 @@
 
 2. **Stage Changes**:
    If specific $FILES are provided, run `!git add $FILES`.
-   Otherwise, run `!git add -u` to stage all currently tracked modified files.
+   Otherwise, run `!git add -A` to stage all.
    Then run `!git diff --staged` to understand exactly what is being committed.
 
 3. **Generate Message**:
