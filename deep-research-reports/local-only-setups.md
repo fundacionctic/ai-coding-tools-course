@@ -148,9 +148,9 @@ export OLLAMA_MAX_GPU_MEMORY=32GB  # Adjust based on your model
 
 **Memory usage:**
 
-- CodeLlama 34B Q4_K_M: ~19GB [huggingface](https://huggingface.co/TheBloke/CodeLlama-34B-GGUF)
-- Mistral 7B 4-bit: ~4GB
-- Qwen 2.5 70B 4-bit: ~35GB
+- CodeLlama 34B Q4_K_M: ~5-7GB (4.6GB model weights + context overhead) [huggingface](https://huggingface.co/TheBloke/CodeLlama-34B-GGUF)
+- Mistral 7B 4-bit: ~4.6GB model weights, ~5-8GB total with context
+- Qwen 2.5 70B 4-bit: ~40GB (includes context buffers)
 
 A fully configured 128GB system can run 70B models at acceptable speeds (8–12 tokens per second) without CPU fallback due to unified memory architecture. [reddit](https://www.reddit.com/r/ollama/comments/1j0by7r/tested_local_llms_on_a_maxed_out_m4_macbook_pro/)
 
@@ -225,7 +225,7 @@ The RTX 4080 setup targets a mid-to-high-end consumer gaming PC with discrete GP
 
 | Component       | Specification                            | Cost (USD)                                                                                                                                 |
 | --------------- | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| **GPU**         | NVIDIA RTX 4080 16GB (320W TDP)          | $949–$1,100 (pricing reflects used/clearance market; new units may be higher) [fluence](https://www.fluence.network/blog/nvidia-rtx-4080/) |
+| **GPU**         | NVIDIA RTX 4080 16GB (320W TDP)          | $849–$1,779 (used/clearance market: $849-$1,100; new: $1,779 as of Jan 2026) [fluence](https://www.fluence.network/blog/nvidia-rtx-4080/) |
 | **CPU**         | Intel Core i5-13600K (14-core, 125W TDP) | $319 [benchmarks.ul](https://benchmarks.ul.com/compare/best-cpus)                                                                          |
 | **Motherboard** | Gigabyte B850 Eagle or MSI B850 Pro      | $180–$230 [techbuyersguru](https://techbuyersguru.com/guide/the-best-1500-high-end-gaming-pc-build/)                                       |
 | **RAM**         | 32GB DDR5-6000 (2×16GB, CL36)            | $325 [techbuyersguru](https://techbuyersguru.com/guide/the-best-1500-high-end-gaming-pc-build/)                                            |
@@ -518,7 +518,7 @@ Batch mode reduces latency overhead per file (prompt processing is amortized).
 ### For Interactive Code Generation
 
 **Recommended:** CodeLlama 34B Q4_K_M [ai.meta](https://ai.meta.com/blog/code-llama-large-language-model-coding/)
-- 19GB storage (fits RTX 4080 VRAM with headroom) [huggingface](https://huggingface.co/TheBloke/CodeLlama-34B-GGUF)
+- ~5-7GB RAM/VRAM (4.6GB model weights + context overhead; fits RTX 4080 VRAM with headroom) [huggingface](https://huggingface.co/TheBloke/CodeLlama-34B-GGUF)
 - 22–28 tok/s on RTX 4080, 15–22 tok/s on M4 Max
 - Superior code completion and instruction following
 - 500B code-specific training tokens
