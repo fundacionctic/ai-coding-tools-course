@@ -181,10 +181,10 @@ The `.cursorrules` file in project root is still supported but deprecated. Migra
 
 Cursor provides access to multiple frontier models and allows custom API keys for self-hosted or proprietary deployments.
 
-**Available models** (as of January 2026):
+**Available models** (as of Jan 2026):
 - Claude Sonnet 4.5, Claude Opus 4.5 (Anthropic)
 - GPT-5, GPT-5.2-Codex, GPT-4.1 (OpenAI)
-- Gemini 2.5 Pro, Gemini 2.5 Flash, Gemini 3 Pro, Gemini 3 Flash (Google) - Gemini 3 Pro released November 18, 2025 with 1M token context window
+- Gemini 2.5 Pro, Gemini 2.5 Flash, Gemini 3 Pro, Gemini 3 Flash (Google) - Gemini 3 Pro released November 18, 2025 with a reported 1M token context window
 - o3 (OpenAI thinking model, available since April 2025)
 - Grok 4 (xAI)
 
@@ -209,7 +209,7 @@ You can provide your own API keys in `Cursor Settings > Models`. Supported provi
 **Important limitation**: Custom API keys work only with standard chat models. Features requiring Cursor-specific models (Tab completion, specialized agents) continue using Cursor's built-in infrastructure.
 
 **Context window sizing**:
-By default, Cursor uses a 200k token context window. In Max Mode, context can expand to the full limit supported by the model (1M tokens for Gemini 2.5 Pro and Gemini 3 Pro, 200k for most other models). Max Mode is slower and more expensive; use it for large-scale refactoring or when you need your entire codebase in context.
+By default, Cursor uses a 200k token context window. In Max Mode, context can expand to the full limit supported by the model (reported up to 1M tokens for Gemini 2.5 Pro and Gemini 3 Pro where available, 200k for most other models). Max Mode is slower and more expensive; use it for large-scale refactoring or when you need your entire codebase in context.
 
 ***
 
@@ -362,7 +362,7 @@ Enterprise and Team plans offer:
 | **Model selection**     | Multiple models; custom API keys           | GitHub backend only                         |
 | **Rules/Customization** | Project rules, memories, MCP               | Limited to settings and comments            |
 | **Startup latency**     | ~500ms (VS Code + AI systems)              | ~100ms (extension overlay)                  |
-| **Cost**                | Free tier; Pro $20/month                   | $10-39/month depending on IDE               |
+| **Cost**                | Free tier; Pro $20/month (as of Jan 2026)  | $10-39/month depending on IDE               |
 | **Learning curve**      | Requires understanding modes and @ symbols | Minimal; feels like enhanced autocomplete   |
 
 **When to choose Cursor**: Teams doing large-scale refactoring, multi-service feature implementation, or requiring persistent context and governance.
@@ -437,7 +437,7 @@ Cursor is designed for codebases up to several million lines, but practical limi
 
 ### Token Consumption and Costs
 
-Cursor includes usage-based pricing aligned with model API rates. For example:
+Cursor includes usage-based pricing aligned with model API rates. Example figures (as of Jan 2026):
 - $20 of included usage on Pro plan.
 - Overages billed at model provider rates.
 - Using gpt-4.1 (~$15 per million tokens) costs more than Claude Sonnet 4.5 (~$3 per million tokens).

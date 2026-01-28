@@ -71,7 +71,7 @@ Copilot consists of distinct, sometimes independently toggled features. [docs.gi
 - Creates branches with `copilot/*` namespace; cannot merge PRs (human approval mandatory)
 - Logs all changes and actions; co-authors commits for compliance attribution
 - Can iterate based on PR review comments from humans
-- Currently uses Claude Sonnet 4.5 model exclusively for agent tasks; model selection coming to Business/Enterprise
+- Model selection is available for Pro/Pro+; Business/Enterprise currently default to Claude Sonnet 4.5, with broader selection rolling out
 
 **Code Review Integration**
 - Request Copilot review on any PR in seconds (typically <30 seconds)
@@ -105,13 +105,13 @@ Students, teachers, and open source maintainers qualify for free Pro tier access
 
 A distinguishing operational capability of Copilot is user-selectable language models, though availability varies by tier and context. [docs.github](https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/use-copilot-agents/coding-agent/changing-the-ai-model)
 
-**Available Models (as of January 2026):**
+**Available Models (as of Jan 2026):**
 
 For **Inline Code Completions**: gpt-4.1, gpt-5-codex, gpt-5.1-codex, gpt-5.2-codex, gpt-5.1-codex-mini, Grok Code Fast 1, Raptor mini.
 
-For **Copilot Chat**: Claude Haiku 4.5, Claude Sonnet 4.5, Claude Opus 4.5, GPT-5, GPT-5.2-Codex, GPT-5.1-Codex, o3 (thinking model), o4-mini, Grok Code Fast 1, Raptor mini (derived from GPT-5-mini family).
+For **Copilot Chat**: Claude Haiku 4.5, Claude Sonnet 4.5, Claude Opus 4.5, GPT-5, GPT-5.2, GPT-5-Codex (preview), GPT-5.1-Codex, o3 (thinking model), o4-mini, Grok Code Fast 1, Raptor mini (derived from GPT-5-mini family).
 
-For **Copilot Coding Agent**: Business/Enterprise plans default to Claude Sonnet 4.5; Pro/Pro+ users can select from available models including Claude Opus 4.5 and other options.
+For **Copilot Coding Agent**: Pro/Pro+ users can select from available models; Business/Enterprise plans currently default to Claude Sonnet 4.5, with broader selection rolling out.
 
 Model selection at individual or organizational level is supported in VS Code, Visual Studio, and JetBrains IDEs. The "Auto" selection mode leverages GitHub's heuristic to reduce rate limiting and select optimal models based on task complexity.
 
@@ -157,7 +157,7 @@ While GitHub claims the probability is "low," Copilot may occasionally suggest c
 
 **Coding Agent Limitations**
 - Cannot make changes across multiple repositories in a single task [docs.github](https://docs.github.com/en/copilot/concepts/agents/coding-agent/about-coding-agent)
-- Cannot select the LLM used by the agent (Business/Enterprise users locked to Claude Sonnet 4.5; coming to Pro/Pro+ soon) [docs.github](https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/use-copilot-agents/coding-agent/changing-the-ai-model)
+- Model selection for the coding agent varies by plan; Pro/Pro+ can choose models, while Business/Enterprise currently default to Claude Sonnet 4.5 with broader selection rolling out [docs.github](https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/use-copilot-agents/coding-agent/changing-the-ai-model)
 - Cannot directly merge pull requests; requires human approval [docs.github](https://docs.github.com/en/copilot/tutorials/reduce-technical-debt)
 - Can only push to `copilot/*` branches; restricted by repository branch protection rules and required checks [docs.github](https://docs.github.com/en/copilot/tutorials/reduce-technical-debt)
 - Requires well-scoped, explicit issue descriptions; vague requirements lead to poor results [docs.github](https://docs.github.com/copilot/how-tos/agents/copilot-coding-agent/best-practices-for-using-copilot-to-work-on-tasks)

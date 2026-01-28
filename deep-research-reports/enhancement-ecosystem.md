@@ -6,7 +6,7 @@ A vibrant ecosystem of open-source tools addresses the challenge of reducing fri
 
 ## I. Pre-Packaged Agent Skills & Reusable Components
 
-### Vercel Agent Skills (17.4k+ stars as of January 2026) [github](https://github.com/vercel-labs/agent-skills)
+### Vercel Agent Skills (17.4k+ stars as of Jan 2026) [github](https://github.com/vercel-labs/agent-skills)
 
 The most prominent project in this category, Vercel's Agent Skills implements the Agent Skills specification—a standardized format for packaging AI agent capabilities. Each skill comprises a SKILL.md file containing instructions with YAML frontmatter metadata, optional scripts in a `scripts/` directory, and supporting documentation in `references/`.
 
@@ -58,7 +58,7 @@ An AI-powered task management system designed for drop-in integration with Curso
 
 ## II. Configuration & Rules Management Systems
 
-### PatrickJS Awesome Cursorrules (37.4k+ stars as of January 2026) [github](https://github.com/PatrickJS/awesome-cursorrules)
+### PatrickJS Awesome Cursorrules (37.4k+ stars as of Jan 2026) [github](https://github.com/PatrickJS/awesome-cursorrules)
 
 The most visible rules collection, organizing .cursorrules and .mdc files across nine categories covering frontend frameworks (React, Vue, Next.js), backend frameworks (Django, Flask, FastAPI, Spring Boot), mobile development, CSS/styling, state management, databases, testing, and language-specific rules.
 
@@ -66,7 +66,7 @@ The most visible rules collection, organizing .cursorrules and .mdc files across
 
 The repository maintains strict conventions: each `.cursorrules` file follows naming patterns like `technology-focus-cursorrules-prompt-file`, organized alphabetically within categories. The accompanying documentation clarifies that `.cursorrules` files are repository-root configuration containing platform-specific instructions, with the repository now shifting toward the `.mdc` (Markdown Cursor) format stored in `.cursor/rules/` directories.
 
-### Flyeric0212 Cursor Rules (441+ stars as of January 2026) [github](https://github.com/flyeric0212/cursor-rules)
+### Flyeric0212 Cursor Rules (441+ stars as of Jan 2026) [github](https://github.com/flyeric0212/cursor-rules)
 
 This multilingual collection implements a hierarchical rule architecture addressing a critical usability challenge: rule application precedence. The repository demonstrates best practices through systematic organization:
 
@@ -82,7 +82,7 @@ This multilingual collection implements a hierarchical rule architecture address
 
 This structure addresses context window efficiency: core rules always apply, language rules activate based on file extensions, framework rules load contextually, and specialized tools integrate only when needed.
 
-### Cursor Best Practices (100+ stars as of January 2026) [github](https://github.com/digitalchild/cursor-best-practices)
+### Cursor Best Practices (100+ stars as of Jan 2026) [github](https://github.com/digitalchild/cursor-best-practices)
 
 Provides comprehensive methodology documentation covering rule precedence, .mdc file structure, user rules versus project rules, Composer modes, and context command usage.
 
@@ -99,15 +99,15 @@ The documentation specifies that each .mdc file requires YAML frontmatter with `
 
 ### Additional Rules Collections Meeting Criteria
 
-**Matank001 Cursor Security Rules (352+ stars as of January 2026): [github](https://github.com/matank001/cursor-security-rules)**
+**Matank001 Cursor Security Rules (352+ stars as of Jan 2026): [github](https://github.com/matank001/cursor-security-rules)**
 Security-focused rules preventing common vulnerabilities: secret exposure, unsafe system commands, MCP misuse, and front-end credential leakage. These operate as guardrails against dangerous code generation patterns.
 
-**Sparesparrow Cursor Rules (58+ stars as of January 2026): [github](https://github.com/sparesparrow/cursor-rules):**
+**Sparesparrow Cursor Rules (58+ stars as of Jan 2026): [github](https://github.com/sparesparrow/cursor-rules):**
 Specialized for AI-powered application development, organizing rules into core (agentic workflows, DevOps), framework (TypeScript, MCP), domain (agents, cognitive architecture), security, and patterns layers.
 
 ## III. Configuration Format Conversion & Distribution
 
-### Dotagent (89+ stars as of January 2026) [github](https://github.com/johnlindquist/dotagent)
+### Dotagent (89+ stars as of Jan 2026) [github](https://github.com/johnlindquist/dotagent)
 
 Addresses a critical cross-tool friction point: managing rules across 15+ different IDE/agent formats. Dotagent introduces the unified `.agent/` directory structure—a portable, version-controllable single source of truth—with bidirectional conversion to:
 
@@ -142,7 +142,7 @@ dotagent export --format copilot
 dotagent export --formats copilot,cursor,cline
 ```
 
-### Sanjeed5 Awesome Cursor Rules MDC (3.2k+ stars as of January 2026) [github](https://github.com/sanjeed5/awesome-cursor-rules-mdc)
+### Sanjeed5 Awesome Cursor Rules MDC (3.2k+ stars as of Jan 2026) [github](https://github.com/sanjeed5/awesome-cursor-rules-mdc)
 
 Automates .mdc rule generation from structured JSON library definitions. The tool uses Exa semantic search to gather best practices, leverages Claude AI for content generation, and supports parallel processing with progress tracking and smart retries.
 
@@ -181,7 +181,7 @@ The tool handles context window limitations through intelligent chunking and con
 
 ## IV. Context Optimization & Persistent Memory Systems
 
-### Context7 MCP Server (Upstash, 43.3k+ stars as of January 2026) [github](https://github.com/upstash/context7)
+### Context7 MCP Server (Upstash, 43.9k+ stars as of Jan 2026) [github](https://github.com/upstash/context7)
 
 An MCP (Model Context Protocol) server providing up-to-date documentation access, resolving the critical friction point of LLM knowledge cutoffs. Rather than relying on training data, agents query current library documentation in real-time.
 
@@ -233,7 +233,7 @@ The memory system uses progressive disclosure similar to Spring AI: instead of l
 
 This pattern optimizes token usage while maintaining comprehensive context availability.
 
-### Cursor10x/DevContext (24+ stars as of January 2026, evolved) [github](https://github.com/aiurda/cursor10x)
+### Cursor10x/DevContext (24+ stars as of Jan 2026, evolved) [github](https://github.com/aiurda/cursor10x)
 
 A comprehensive Model Context Protocol (MCP) server implementing multi-dimensional persistent memory: short-term (recent messages), long-term (milestones and decisions), episodic (chronological event sequences), and semantic (vector-embedded similarity).
 
@@ -257,7 +257,7 @@ The project has evolved into **DevContext**, providing more sophisticated contex
 
 ## V. Best Practices Collections & Generators
 
-### Awesome Cursor (hao-ji-xing, 61+ stars as of January 2026) [github](https://github.com/hao-ji-xing/awesome-cursor)
+### Awesome Cursor (hao-ji-xing, 61+ stars as of Jan 2026) [github](https://github.com/hao-ji-xing/awesome-cursor)
 
 A comprehensive index covering:
 
@@ -269,7 +269,7 @@ A comprehensive index covering:
 
 **MCPs**: smithery.ai (MCP discovery), cursor-mcp-installer (automatic MCP installation), context7, claude-task-master
 
-### Flutter AI Rules (evanca, 468+ stars as of January 2026) [github](https://github.com/evanca/flutter-ai-rules)
+### Flutter AI Rules (evanca, 468+ stars as of Jan 2026) [github](https://github.com/evanca/flutter-ai-rules)
 
 Demonstrates domain-specific rule organization with two key innovations: [github](https://github.com/evanca/flutter-ai-rules)
 
@@ -306,7 +306,7 @@ The following table synthesizes key capabilities across major projects:
 | Dotagent                      | 89         | Format Converter      | ✅✅✅                | ✅✅        | ✅                    |
 | Sanjeed5 MDC Generator        | 3.2k       | Automation            | ✅                  | ✅✅        | ✅                    |
 | Rulefy                        | 26         | Codebase Analyzer     | ✅✅                 | ✅         | ✅                    |
-| Context7 MCP                  | 43.3k      | Documentation API     | ✅✅                 | ✅✅        | ✅✅✅                  |
+| Context7 MCP                  | 43.9k      | Documentation API     | ✅✅                 | ✅✅        | ✅✅✅                  |
 | Cursor Memory Bank            | Emerging   | Persistent Memory     | ✅                  | ✅         | ✅✅✅                  |
 | Cursor10x/DevContext          | 24         | Multi-Dim Memory      | ✅                  | ✅✅        | ✅✅✅                  |
 | Spring AI Agent Utils         | Enterprise | Framework Integration | ✅✅                 | ✅✅        | ✅                    |

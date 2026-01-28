@@ -4,7 +4,7 @@ Software documentation has become a persistent liability in engineering organiza
 
 ### Executive Summary
 
-The AI documentation market has crystallized around three distinct categories: repository-level documentation generators (CodeWiki, DeepWiki), real-time API documentation platforms (Mintlify, ReadMe, Apidog), and embedded code-level documentation (GitHub Copilot, Swimm, DocuWriter). The most sophisticated tools employ agentic systems with hierarchical decomposition and retrieval-augmented generation (RAG) to maintain documentation in permanent synchronization with source code. According to the 2025 Stack Overflow Developer Survey, GitHub Copilot is used by 67% of developers for code review, with general code assistant adoption at 69% as of October 2025 (Stack Overflow Developer Survey 2025, Jellyfish 2025 AI Metrics Review). Enterprise productivity gains are documented at up to 55% faster task completion through GitHub's research with Microsoft and Accenture developers (GitHub research, 2024).
+The AI documentation market has crystallized around three distinct categories: repository-level documentation generators (CodeWiki, DeepWiki), real-time API documentation platforms (Mintlify, ReadMe, Apidog), and embedded code-level documentation (GitHub Copilot, Swimm, DocuWriter). The most sophisticated tools employ agentic systems with hierarchical decomposition and retrieval-augmented generation (RAG) to maintain documentation in permanent synchronization with source code. According to the 2025 Stack Overflow Developer Survey, GitHub Copilot is used by 68% of developers and ChatGPT by 82% for AI-assisted development, indicating broad adoption of AI coding tools (Stack Overflow Developer Survey 2025). Enterprise productivity gains are documented at up to 55% faster task completion in GitHub’s 2022 developer productivity study (GitHub research, 2022).
 
 ***
 
@@ -141,7 +141,7 @@ Teams define custom style guides that Eddy follows, ensuring brand consistency a
 GitHub Copilot (68% of developers) and ChatGPT (82%) establish the market's entry point for most AI-assisted development. Documentation-specific tools occupy the next tier: Mintlify, Swimm, and ReadMe demonstrate production adoption across enterprise customers.
 
 **Enterprise Productivity Metrics** [vladimirsiedykh](https://vladimirsiedykh.com/blog/ai-development-team-productivity-github-research-developer-community-studies-2025)
-GitHub's 2024 research across 2,000+ developers reveals:
+GitHub's 2022 research across 2,000+ developers reveals:
 - 55% faster task completion with AI-assisted development
 - 23% reduction in code review discussion time
 - Superior code quality ratings (blind review assessment)
