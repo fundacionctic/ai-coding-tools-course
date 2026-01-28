@@ -183,9 +183,9 @@ Cursor provides access to multiple frontier models and allows custom API keys fo
 
 **Available models** (as of January 2026):
 - Claude Sonnet 4.5, Claude Opus 4.5 (Anthropic)
-- gpt-4.1, gpt-5.2 (OpenAI)
-- Gemini 2.5 Pro, Gemini 2.5 Flash (Google)
-- o3 (OpenAI reasoning model)
+- GPT-5, GPT-5.2-Codex, GPT-4.1 (OpenAI)
+- Gemini 2.5 Pro, Gemini 2.5 Flash, Gemini 3 Flash (Google)
+- o3 (OpenAI thinking model, available since April 2025)
 - Grok 4 (xAI)
 
 **Model selection strategy**:
@@ -208,7 +208,7 @@ You can provide your own API keys in `Cursor Settings > Models`. Supported provi
 **Important limitation**: Custom API keys work only with standard chat models. Features requiring Cursor-specific models (Tab completion, specialized agents) continue using Cursor's built-in infrastructure.
 
 **Context window sizing**:
-By default, Cursor uses a 200k token context window. In Max Mode, context can expand to the full limit supported by the model (1M tokens for Gemini 2.5 Pro with 2M in development, 200k for most others). Max Mode is slower and more expensive; use it for large-scale refactoring or when you need your entire codebase in context.
+By default, Cursor uses a 200k token context window. In Max Mode, context can expand to the full limit supported by the model (1M tokens for Gemini 2.5 Pro, with Gemini 3 Flash now available; 2M context in development for select models, 200k for most others). Max Mode is slower and more expensive; use it for large-scale refactoring or when you need your entire codebase in context.
 
 ***
 

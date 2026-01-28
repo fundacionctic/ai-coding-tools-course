@@ -107,9 +107,9 @@ A distinguishing operational capability of Copilot is user-selectable language m
 
 **Available Models (as of January 2026):**
 
-For **Inline Code Completions**: gpt-4.1-copilot (default), gpt-5-codex, gpt-5.1-codex, gpt-5.1-codex-mini, Grok Code Fast 1, Raptor mini.
+For **Inline Code Completions**: gpt-4.1, gpt-5-codex, gpt-5.1-codex, gpt-5.2-codex, gpt-5.1-codex-mini, Grok Code Fast 1, Raptor mini.
 
-For **Copilot Chat**: Claude Haiku 4.5, Claude Sonnet 4.5, Claude Opus 4.5, gpt-5, gpt-5-mini, gpt-5-codex, gpt-5.1-codex, Grok Code Fast 1, Raptor mini.
+For **Copilot Chat**: Claude Haiku 4.5, Claude Sonnet 4.5, Claude Opus 4.5, GPT-5, GPT-5.2-Codex, GPT-5.1-Codex, o3 (thinking model), o4-mini, Grok Code Fast 1, Raptor mini (derived from GPT-5-mini family).
 
 For **Copilot Coding Agent**: Business/Enterprise plans default to Claude Sonnet 4.5; Pro/Pro+ users can select from available models including Claude Opus 4.5 and other options.
 
