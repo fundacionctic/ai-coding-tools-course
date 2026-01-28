@@ -10,7 +10,7 @@ The AI documentation market has crystallized around three distinct categories: r
 
 ### Category 1: Repository-Level Documentation Synthesis
 
-**CodeWiki** represents the state-of-the-art in automated codebase understanding [arxiv](https://arxiv.org/html/2510.24428v1). Developed by FSoft-AI4Code and published as peer-reviewed research, CodeWiki employs three architectural innovations: hierarchical decomposition using dependency analysis (via Tree-Sitter AST parsing), recursive agentic processing with dynamic delegation, and multi-modal synthesis producing text, architecture diagrams, data flows, and sequence diagrams. The framework achieves 68.79% quality scores with proprietary models (Claude Sonnet 4) and 64.80% with open-source alternatives (Kimi K2), outperforming Devin's closed-source DeepWiki (64.06%) on CodeWikiBench, the first repository-level documentation benchmark with multilingual support across seven programming languages [arxiv](https://arxiv.org/html/2510.24428v5).
+**CodeWiki** represents the state-of-the-art in automated codebase understanding [arxiv](https://arxiv.org/html/2510.24428v1). Developed by FSoft-AI4Code and published as peer-reviewed research, CodeWiki employs three architectural innovations: hierarchical decomposition using dependency analysis (via Tree-Sitter AST parsing), recursive agentic processing with dynamic delegation, and multi-modal synthesis producing text, architecture diagrams, data flows, and sequence diagrams. The framework achieves 68.79% quality scores with proprietary models (Claude Sonnet 4), outperforming Devin's closed-source DeepWiki (64.06%) on CodeWikiBench, the first repository-level documentation benchmark with multilingual support across seven programming languages [arxiv](https://arxiv.org/html/2510.24428v5).
 
 **DeepWiki** (Devin AI's offering) provides complementary strengths in accessibility and user experience [marktechpost](https://www.marktechpost.com/2025/04/27/devin-ai-introduces-deepwiki-a-new-ai-powered-interface-to-understand-github-repositories/). Available as a free tool requiring only GitHub repository URLs, DeepWiki generates:
 
@@ -20,7 +20,7 @@ The AI documentation market has crystallized around three distinct categories: r
 - Automatically-generated architecture diagrams and flowcharts
 - Conversational Q&A grounded in repository content
 
-The platform supports both public repositories (no authentication) and private repositories (via Devin account authentication). Deep Research mode extends functionality to identify optimization opportunities and architectural critiques, functioning as an automated senior code reviewer. The tool processes approximately 1,000 queries daily from its user base [everydev](https://www.everydev.ai/tools/deepwiki), indicating substantial production adoption.
+The platform supports both public repositories (no authentication) and private repositories (via Devin account authentication). Deep Research mode extends functionality to identify optimization opportunities and architectural critiques, functioning as an automated senior code reviewer.
 
 **Comparative Positioning**: CodeWiki emphasizes architectural integrity and scalability for large repositories; DeepWiki prioritizes rapid onboarding and conversational interface accessibility. For teams prioritizing open-source control and research-grade evaluation, CodeWiki. For teams seeking immediate free access without infrastructure commitment, DeepWiki.
 
@@ -37,7 +37,7 @@ The platform supports both public repositories (no authentication) and private r
 5. Suggestions surfaced for manual review/refinement
 6. Changes merged via pull requests
 
-Documentation update velocity reaches 94% faster completion during code reviews with 100% consistency between code and docs [autonoly](https://www.autonoly.com/integrations/automation/mintlify/code-review-automation). The platform integrates seamlessly with GitHub Actions and n8n workflows, enabling fully automated documentation maintenance in continuous deployment pipelines [mintlify](https://www.mintlify.com/docs/guides/automate-agent).
+The platform claims high consistency between code and documentation through automated synchronization [autonoly](https://www.autonoly.com/integrations/automation/mintlify/code-review-automation). The platform integrates seamlessly with GitHub Actions and n8n workflows, enabling fully automated documentation maintenance in continuous deployment pipelines [mintlify](https://www.mintlify.com/docs/guides/automate-agent).
 
 **ReadMe** provides enterprise-grade API documentation with AI-enhanced generation workflows [aifordevteams](https://www.aifordevteams.com/blog/top-10-ai-documentation-tools-for-developers). Key differentiators include Git-backed branching for collaborative documentation drafting, suggested edits for quality control, OpenAPI integration for API schema synchronization, and a planned commenting feature for external contributor feedback. The platform automatically generates comprehensive documentation including endpoint definitions, parameter details, response samples, and code examples in multiple programming languages.
 
