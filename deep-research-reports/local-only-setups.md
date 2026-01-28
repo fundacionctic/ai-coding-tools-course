@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-This report details two distinct, fully air-gapped hardware configurations optimized for local large language model inference during software development. Both setups eliminate dependency on cloud services, ensure data privacy by design, and support production-grade LLM deployments through specialized accelerators: unified memory on Apple Silicon for the macOS system, and consumer-grade RTX GPUs with CUDA acceleration for the PC. Total system costs range from $3,200–$4,200 USD depending on configuration and regional pricing. [macrumors](https://www.macrumors.com/roundup/mac-studio/)
+This report details two distinct, fully air-gapped hardware configurations optimized for local large language model inference during software development. Both setups eliminate dependency on cloud services, ensure data privacy by design, and support production-grade LLM deployments through specialized accelerators: unified memory on Apple Silicon for the macOS system, and consumer-grade RTX GPUs with CUDA acceleration for the PC. Total system costs range from $3,200–$4,200 USD depending on configuration and regional pricing. **Note:** Component prices are approximate and fluctuate over time; verify current pricing before purchase. [macrumors](https://www.macrumors.com/roundup/mac-studio/)
 
 The macOS M4 Max setup prioritizes power efficiency and unified memory architecture, delivering solid inference speeds (35–72 tokens per second for 8B models) with minimal operational complexity. The RTX 4080 PC delivers competitive throughput and supports larger model variants through intelligent CPU/GPU memory offloading, at the cost of higher power consumption and additional setup complexity for driver and CUDA configuration. [singhajit](https://singhajit.com/llm-inference-speed-comparison/)
 
@@ -21,7 +21,7 @@ graph TB
     
     subgraph "Hardware Layer"
         MacSide[macOS M4 Max<br/>Unified Memory<br/>Metal GPU<br/>36-128GB Shared Pool<br/>✓ Metal Accel]
-        RTXSide[RTX 4080 PC<br/>16GB VRAM + 32GB RAM<br/>CUDA 13.1.1<br/>850W PSU<br/>✓ CUDA Accel]
+        RTXSide[RTX 4080 PC<br/>16GB VRAM + 32GB RAM<br/>CUDA 13.1+<br/>850W PSU<br/>✓ CUDA Accel]
     end
     
     VSCode --> Ollama
@@ -152,6 +152,8 @@ export OLLAMA_MAX_GPU_MEMORY=32GB  # Adjust based on your model
 - Mistral 7B 4-bit: ~4.6GB model weights, ~5-8GB total with context
 - Qwen 2.5 70B 4-bit: ~40GB (includes context buffers)
 
+**Note:** macOS unified memory requirements differ from discrete GPU VRAM needs. The 5-7GB figure above represents model file size on macOS. For discrete GPUs like RTX 4080, CodeLlama 34B Q4_K_M requires 18-20GB VRAM at runtime (including activations and KV cache), necessitating CPU offloading on 16GB cards.
+
 A fully configured 128GB system can run 70B models at acceptable speeds (8–12 tokens per second) without CPU fallback due to unified memory architecture. [reddit](https://www.reddit.com/r/ollama/comments/1j0by7r/tested_local_llms_on_a_maxed_out_m4_macbook_pro/)
 
 ### Power and Thermal Characteristics
@@ -226,7 +228,7 @@ The RTX 4080 setup targets a mid-to-high-end consumer gaming PC with discrete GP
 | Component       | Specification                            | Cost (USD)                                                                                                                                 |
 | --------------- | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | **GPU**         | NVIDIA RTX 4080 16GB (320W TDP)          | $849–$1,779 (used/clearance market: $849-$1,100; new: $1,779 as of Jan 2026) [fluence](https://www.fluence.network/blog/nvidia-rtx-4080/) |
-| **CPU**         | Intel Core i5-13600K (14-core, 125W TDP) | $319 [benchmarks.ul](https://benchmarks.ul.com/compare/best-cpus)                                                                          |
+| **CPU**         | Intel Core i5-13600K (14-core, 125W TDP) | $319 (launch price, 2022; verify current pricing) [benchmarks.ul](https://benchmarks.ul.com/compare/best-cpus)                                                                          |
 | **Motherboard** | Gigabyte B850 Eagle or MSI B850 Pro      | $180–$230 [techbuyersguru](https://techbuyersguru.com/guide/the-best-1500-high-end-gaming-pc-build/)                                       |
 | **RAM**         | 32GB DDR5-6000 (2×16GB, CL36)            | $325 [techbuyersguru](https://techbuyersguru.com/guide/the-best-1500-high-end-gaming-pc-build/)                                            |
 | **Storage**     | 2TB NVMe SSD (SK Hynix, Samsung 990 Pro) | $199 [xda-developers](https://www.xda-developers.com/rtx-4080-pc-build/)                                                                   |
@@ -239,7 +241,7 @@ The RTX 4080 setup targets a mid-to-high-end consumer gaming PC with discrete GP
 
 ### Why This Architecture
 
-The RTX 4080 offers 16GB of VRAM, sufficient to load most 34B models entirely on GPU with fast inference (68 tokens per second for 8B models). For larger 70B models, Ollama intelligently offloads model layers to system RAM, achieving acceptable performance (12–50 tokens per second depending on the split) when paired with adequate system memory (32GB minimum, 64GB recommended). [dev](https://dev.to/rosgluk/nvidia-dgx-spark-vs-mac-studio-vs-rtx-4080-ollama-performance-comparison-24lc)
+The RTX 4080 offers 16GB of VRAM (~14.7GB available for inference after system overhead), sufficient for models up to ~13B parameters to run entirely on GPU with fast inference (68 tokens per second for 8B models). CodeLlama 34B Q4_K_M requires approximately 15.7-20GB VRAM depending on context length, necessitating partial CPU offloading on the RTX 4080. With short contexts (2-4K tokens), minimal offloading may suffice; longer contexts require more layers offloaded to system RAM, reducing performance. For larger 70B models, Ollama intelligently offloads model layers to system RAM, achieving acceptable performance (12–50 tokens per second depending on the split) when paired with adequate system memory (32GB minimum, 64GB recommended). [dev](https://dev.to/rosgluk/nvidia-dgx-spark-vs-mac-studio-vs-rtx-4080-ollama-performance-comparison-24lc)
 
 Unlike the macOS setup, the RTX system requires explicit CUDA and driver configuration but offers flexibility: multiple GPUs can be chained together, and the platform supports both NVIDIA and AMD accelerators. For development workflows involving large context windows or batch inference, the RTX approach scales through multi-GPU configurations. [blogs.nvidia](https://blogs.nvidia.com/blog/rtx-ai-garage-ces-2026-open-models-video-generation/)
 
@@ -353,7 +355,7 @@ Same as macOS; create `~/.continue/config.json`:
 | Model                 | Quantization | RTX 4080 (16GB)        | Notes                                |
 | --------------------- | ------------ | ---------------------- | ------------------------------------ |
 | Llama 3.1 8B          | Q4           | 68 tok/s               | Fits entirely in VRAM                |
-| CodeLlama 34B         | Q4_K_M       | 22–28 tok/s            | Fits in VRAM, some CPU spillover     |
+| CodeLlama 34B         | Q4_K_M       | 15–22 tok/s            | Requires partial CPU offloading (~15.7-20GB VRAM needed depending on context; RTX 4080 has ~14.7GB available. Offloading increases with longer contexts)     |
 | Mistral 7B            | Q4           | 45–55 tok/s            | Prompt eval: 300+ tok/s              |
 | GPT-OSS 120B          | Q4 (65GB)    | 12.45 tok/s generation | 78% CPU / 22% GPU; requires 64GB RAM |
 | DeepSeek-R1 Llama 70B | Q4           | 18–25 tok/s            | Requires system RAM offloading       |
@@ -361,7 +363,7 @@ Same as macOS; create `~/.continue/config.json`:
 **VRAM and System RAM Requirements:**
 
 - **Fits in 16GB VRAM:** CodeLlama 13B, Mistral 7B, Qwen 14B
-- **Partial offloading (10–12GB VRAM + system RAM):** CodeLlama 34B, DeepSeek-R1 32B
+- **Partial offloading (~15.7-20GB VRAM needed depending on context length, requires system RAM on 16GB cards):** CodeLlama 34B (works but performance degrades with longer contexts), DeepSeek-R1 32B
 - **Full CPU offloading (system RAM + GPU for computation):** 70B models require 32GB+ system RAM minimum, 64GB recommended [dev](https://dev.to/rosgluk/nvidia-dgx-spark-vs-mac-studio-vs-rtx-4080-ollama-performance-comparison-24lc)
 
 When running 70B models, Ollama allocates approximately 78% to CPU (via system RAM) and 22% to GPU (compute kernels), resulting in prompt evaluation speeds of 969 tokens per second (fast) but generation at only 12.45 tokens per second (acceptable for batch tasks). [dev](https://dev.to/rosgluk/nvidia-dgx-spark-vs-mac-studio-vs-rtx-4080-ollama-performance-comparison-24lc)
@@ -403,7 +405,7 @@ pip install -r requirements.txt
 **2. Development Session:**
 
 - Open VS Code; Continue detects Ollama at `localhost:11434`
-- Use **Ctrl+I** for code generation via CodeLlama 34B (22–28 tok/s, full GPU)
+- Use **Ctrl+I** for code generation via CodeLlama 34B (15–22 tok/s with partial CPU offloading)
 - Use **Tab** for inline autocomplete via StarCoder 2 3B (~50 tok/s, full GPU)
 - For context-heavy tasks (large file analysis), switch to DeepSeek-R1 70B for superior reasoning (18–25 tok/s, mixed GPU/CPU)
 
@@ -469,9 +471,9 @@ Batch mode reduces latency overhead per file (prompt processing is amortized).
 - **Best for:** Long-running sessions, large context windows (128GB models), silent office environments
 
 **RTX 4080:**
-- **Advantage:** 40–50% faster inference for models that fit in VRAM (34B range), supports multi-GPU chains, scales to enterprise setups [blogs.nvidia](https://blogs.nvidia.com/blog/rtx-ai-garage-ces-2026-open-models-video-generation/)
-- **Limitation:** 250-300W power draw under load (320W TDP), requires driver/CUDA management, generates heat/noise [dev](https://dev.to/rosgluk/nvidia-dgx-spark-vs-mac-studio-vs-rtx-4080-ollama-performance-comparison-24lc)
-- **Best for:** Production batch jobs, models requiring raw speed (18–28 tok/s for 34B), teams with multiple developers using one shared GPU server
+- **Advantage:** 40–50% faster inference for models that fit entirely in VRAM (up to ~13B), supports multi-GPU chains, scales to enterprise setups [blogs.nvidia](https://blogs.nvidia.com/blog/rtx-ai-garage-ces-2026-open-models-video-generation/)
+- **Limitation:** 250-300W power draw under load (320W TDP), requires driver/CUDA management, generates heat/noise. CodeLlama 34B requires CPU offloading (15-22 tok/s) due to VRAM constraints; offloading increases with longer context windows [dev](https://dev.to/rosgluk/nvidia-dgx-spark-vs-mac-studio-vs-rtx-4080-ollama-performance-comparison-24lc)
+- **Best for:** Production batch jobs, models up to 13B for full GPU speed, teams with multiple developers using one shared GPU server
 
 ### Cost Analysis
 
@@ -518,10 +520,11 @@ Batch mode reduces latency overhead per file (prompt processing is amortized).
 ### For Interactive Code Generation
 
 **Recommended:** CodeLlama 34B Q4_K_M [ai.meta](https://ai.meta.com/blog/code-llama-large-language-model-coding/)
-- ~5-7GB RAM/VRAM (4.6GB model weights + context overhead; fits RTX 4080 VRAM with headroom) [huggingface](https://huggingface.co/TheBloke/CodeLlama-34B-GGUF)
-- 22–28 tok/s on RTX 4080, 15–22 tok/s on M4 Max
+- ~5-7GB model file size (macOS unified memory) or ~15.7-20GB VRAM runtime requirement depending on context length (discrete GPUs; RTX 4080 requires partial CPU offloading, especially with longer contexts) [huggingface](https://huggingface.co/TheBloke/CodeLlama-34B-GGUF)
+- 15–22 tok/s on RTX 4080 (with offloading; performance varies with context length), 15–22 tok/s on M4 Max
 - Superior code completion and instruction following
 - 500B code-specific training tokens
+- **Note for RTX 4080 users:** For optimal performance without offloading, consider CodeLlama 13B which fits entirely in VRAM
 
 **Alternative:** Mistral 7B or DeepSeek-R1 Distill Llama 70B [mistral](https://mistral.ai/news/announcing-mistral-7b)
 - Mistral 7B: Fastest (40–72 tok/s), smallest (4GB), weaker reasoning
@@ -572,7 +575,7 @@ docker run -d -v /models:/models -p 11434:11434 ollama/ollama
 
 **RTX 4080 + 64GB system RAM server**
 - Total investment: $3,500 + $15/month electricity [techbuyersguru](https://techbuyersguru.com/guide/the-best-1500-high-end-gaming-pc-build/)
-- 28+ tok/s for 34B models, 70B models at 18–25 tok/s with batch optimization [dev](https://dev.to/rosgluk/nvidia-dgx-spark-vs-mac-studio-vs-rtx-4080-ollama-performance-comparison-24lc)
+- 15-22 tok/s for CodeLlama 34B (with CPU offloading), 70B models at 18–25 tok/s with batch optimization [dev](https://dev.to/rosgluk/nvidia-dgx-spark-vs-mac-studio-vs-rtx-4080-ollama-performance-comparison-24lc)
 - Scales via multi-GPU configurations [blogs.nvidia](https://blogs.nvidia.com/blog/rtx-ai-garage-ces-2026-open-models-video-generation/)
 
 ## Conclusion
