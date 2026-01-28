@@ -10,8 +10,8 @@ Modern agentic systems are defined by their ability to close the loop between pe
 
 Terminal-native agents have emerged as the preferred choice for developers requiring deep integration with build systems and system utilities. Claude. Code, as a terminal-based assistant, serves as an agentic harness that enables the underlying model to navigate repositories, edit multiple files, and execute shell commands to verify implementation. To manage the risks inherent in granting an AI model shell access, these systems employ sophisticated sandboxing and isolation techniques.
 
-| Feature             | Claude. Code (2025/2026)                    | OpenAI Codex CLI (2025/2026)                     |
-| :------------------ | :----------------------------------------- | :----------------------------------------------- |
+| Feature              | Claude. Code (2025/2026)                   | OpenAI Codex CLI (2025/2026)                     |
+| :------------------- | :----------------------------------------- | :----------------------------------------------- |
 | Isolation. Mechanism | OS-level sandboxing (Filesystem & Network) | Air-gapped containers by default                 |
 | Default. Permission  | Read-only; prompt for edits/shell          | Structured JSON tool-calling with traceable logs |
 | Verification. Loop   | Integrated terminal for tests and linting  | Iterative orchestrator feedback loop             |
@@ -37,13 +37,13 @@ The primary technical divide in the agentic landscape revolves around the strate
 
 Supermaven and Gemini 3 Pro represent the vanguard of the massive-context approach, offering windows of 1 million tokens or more. This architecture allows the agent to ingest large portions of the codebase simultaneously, theoretically bypassing the information loss inherent in traditional retrieval systems. Supermaven, in particular, emphasizes ultra-low latency, claiming the fastest completions in the industry through highly optimized context management and diff-based edit awareness. Conversely, Sourcegraph. Cody and Windsurf utilize a search-first RAG approach. Sourcegraph. Cody leverages. Sourcegraph’s mature code intelligence platform to perform semantic search across multiple repositories. Windsurf’s Cascade engine builds a semantic map of the project, tracking dependencies and file relationships to automatically load relevant context without requiring the user to tag specific files
 
-| Metric        | Massive. Context (e.g., Supermaven) | Search-First RAG (e.g., Cody, Windsurf) |
-| :------------ | :--------------------------------- | :-------------------------------------- |
-| Context. Scale | 1M+ tokens                         | Repository-wide semantic map            |
-| Latency (FTR) | 2.7s \- 5.3s                       | Dependent on retrieval/indexing depth.  |
-| Accuracy      | High for local file coherence.     | High for cross-repo dependencies        |
-| Cost          | High (paying for unused tokens)    | Efficient (targeted retrieval)          |
-| Limitation    | "Lost in the Middle" scattering    | Complexity in indexing/RAG tuning       |
+| Metric         | Massive. Context (e.g., Supermaven) | Search-First RAG (e.g., Cody, Windsurf) |
+| :------------- | :---------------------------------- | :-------------------------------------- |
+| Context. Scale | 1M+ tokens                          | Repository-wide semantic map            |
+| Latency (FTR)  | 2.7s \- 5.3s                        | Dependent on retrieval/indexing depth.  |
+| Accuracy       | High for local file coherence.      | High for cross-repo dependencies        |
+| Cost           | High (paying for unused tokens)     | Efficient (targeted retrieval)          |
+| Limitation     | "Lost in the Middle" scattering     | Complexity in indexing/RAG tuning       |
 
 The phenomenon of the "Lost in the Middle" effect—where models struggle to focus on critical information buried in the middle of a massive context window—has led to the emergence of "Context. Engineering" This discipline focuses on the systematic design of the end-to-end pipeline: from semantic parsing and hybrid indexing (combining full-text and vector search) to the final assembly of the model's reasoning context
 
@@ -100,7 +100,7 @@ The move toward agentic engineering has necessitated the formalization of new me
 
 Spec-Driven. Development (SDD) is a development paradigm where well-crafted software requirements specifications serve as the primary source of truth and the prompt for AI agents SDD inverts the traditional workflow: instead of writing code and then documenting it, the specification is created first and used to generate the code, documentation, and tests
 
-| Phase         | Agentic SDD Workflow (Specify → Plan → Tasks → Implement)                           | Traditional. Agile TDD Workflow                            |
+| Phase         | Agentic SDD Workflow (Specify → Plan → Tasks → Implement)                           | Traditional. Agile TDD Workflow                           |
 | :------------ | :---------------------------------------------------------------------------------- | :-------------------------------------------------------- |
 | **Specify**   | Agent generates a detailed functional spec from a high-level goal                   | Developer writes user stories and acceptance criteria.    |
 | **Plan**      | Agent creates a technical implementation plan including file paths and dependencies | Developer/Architect designs system layout manually.       |
@@ -121,7 +121,7 @@ The deployment of autonomous agents within an enterprise context introduces sign
 
 The autonomy of ASE tools has created a new frontier for cybersecurity risks. Several high-severity vulnerabilities were identified in late 2025 and early 2026, primarily revolving around improper handling of the agent's execution environment.
 
-| CVE ID             | Severity | Tool      | Vulnerability. Description                                                                                                           |
+| CVE ID             | Severity | Tool      | Vulnerability. Description                                                                                                          |
 | :----------------- | :------- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------- |
 | **CVE-2025-59532** | 8 (High) | Codex CLI | Improper validation allowed model-generated paths to be treated as writable roots, bypassing workspace boundaries                   |
 | **CVE-2025-55345** | 8 (High) | Codex CLI | Unsafe symlink following in workspace-write mode enabled arbitrary file overwrites and potential RCE                                |
@@ -159,12 +159,12 @@ DORA metrics (Deployment. Frequency, Lead. Time for Changes, MTTR, Change. Failu
 
 Strategic adoption of ASE tools requires a clear understanding of the pricing landscape. Most vendors have moved toward credit-based or usage-based models to account for the high inference costs of frontier models.
 
-| Plan. Type      | Typical. Cost (2025/2026) | Target. Audience | Key Features                                      |
-| :------------- | :----------------------- | :-------------- | :------------------------------------------------ |
-| **Free/Hobby** | $0/mo                    | Individuals     | \~25 prompts/mo; limited model access             |
-| **Pro**        | $15 \- $20/mo            | Power. Users     | 500 prompts/mo; Claude 3.5/GPT-5 access           |
-| **Teams**      | $30 \- $40/user/mo       | Small. Teams     | Admin dashboards; centralized billing             |
-| **Enterprise** | $60+/user/mo             | Large. Orgs      | RBAC; SSO; Zero. Data Retention; Dedicated support |
+| Plan. Type     | Typical. Cost (2025/2026) | Target. Audience | Key Features                                       |
+| :------------- | :------------------------ | :--------------- | :------------------------------------------------- |
+| **Free/Hobby** | $0/mo                     | Individuals      | \~25 prompts/mo; limited model access              |
+| **Pro**        | $15 \- $20/mo             | Power. Users     | 500 prompts/mo; Claude 3.5/GPT-5 access            |
+| **Teams**      | $30 \- $40/user/mo        | Small. Teams     | Admin dashboards; centralized billing              |
+| **Enterprise** | $60+/user/mo              | Large. Orgs      | RBAC; SSO; Zero. Data Retention; Dedicated support |
 
 Strategic guidance for moving from "vibe coding" (informal, unmeasured AI use) to enterprise-grade orchestration involves:
 

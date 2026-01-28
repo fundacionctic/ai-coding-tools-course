@@ -15,10 +15,10 @@ The assumption that refining AI-generated code through iterative feedback loops 
 The evolution of security flaws across refinement loops follows a non-linear path, characterized by moderate vulnerability counts in initial outputs followed by a sharp increase as the model attempts to "optimize" or "enhance" its own previous work. Data from a controlled experiment involving 400 code samples across 40 rounds of iteration shows that the average number of vulnerabilities per sample rises from 2 in the first iteration to 4 in middle iterations (rounds 3-7), ultimately reaching peak levels in the final rounds of the study
 
 | Iteration. Round | Avg. Vulnerabilities per. Sample | Severity. Level (Predominant) | Statistical. Effect. Size (η2) |
-| :-------------- | :------------------------------ | :--------------------------- | :--------------------------- |
-| Round 1         | 2                               | Medium                       | 0                            |
-| Rounds 3-7      | 4                               | High                         | 0                            |
-| Rounds 8-10     | 5                               | Critical                     | 0                            |
+| :--------------- | :------------------------------- | :---------------------------- | :----------------------------- |
+| Round 1          | 2                                | Medium                        | 0                              |
+| Rounds 3-7       | 4                                | High                          | 0                              |
+| Rounds 8-10      | 5                                | Critical                      | 0                              |
 
 The persistence of this trend across multiple iterations indicates that LLMs prioritize functional adherence to user prompts over the structural safety of the resulting implementation. In the pursuit of satisfying efficiency or feature requirements, the models frequently strip away redundant checks or fail to account for the impact of new logic on the existing access control model
 
@@ -27,11 +27,11 @@ The persistence of this trend across multiple iterations indicates that LLMs pri
 The specific security risks encountered in AI-generated code are highly correlated with the strategies used by developers during the prompting phase. Research categorizes these interactions into four primary strategies: efficiency-focused (EF), feature-focused (FF), security-focused (SF), and ambiguous improvement (AI). Each strategy produces a distinct signature of vulnerabilities. Efficiency-focused prompts, which ask models to optimize for performance or reduce memory footprint, are particularly prone to introducing injection vulnerabilities and path traversal flaws. In these cases, the LLM often interprets "efficiency" as the removal of input validations and safety guardrails that consume compute cycles. Feature-focused prompts, by contrast, tend to produce a higher volume of logic errors and access control flaws as the complexity of the code increases. Security-focused prompts, while generally more effective, are not immune to failure; they often result in "subtle flaws" where the model claims to have fixed a bug while maintaining an insecure pattern
 
 | Prompting. Strategy    | Total. Vulnerabilities | Critical | High | Medium | Low  |
-| :-------------------- | :-------------------- | :------- | :--- | :----- | :--- |
-| Efficiency-focused    | 124                   | 37       | 41   | 29     | 17   |
-| Feature-focused       | 158                   | 29       | 53   | 47     | 29   |
-| Security-focused      | 38                    | 7        | 12   | 10     | 9    |
-| Ambiguous. Improvement | 67                    | 14       | 19   | 21     | 13   |
+| :--------------------- | :--------------------- | :------- | :--- | :----- | :--- |
+| Efficiency-focused     | 124                    | 37       | 41   | 29     | 17   |
+| Feature-focused        | 158                    | 29       | 53   | 47     | 29   |
+| Security-focused       | 38                     | 7        | 12   | 10     | 9    |
+| Ambiguous. Improvement | 67                     | 14       | 19   | 21     | 13   |
 
 The prevalence of memory safety issues, input validation errors, and cryptographic implementation failures across all prompting types suggests a systemic limitation in the models’ ability to internalize secure-by-default coding practices. Developers using these tools often exhibit a "false sense of security," rating insecure solutions as safe simply because they pass functional tests
 
@@ -43,11 +43,11 @@ The financial implications of enterprise AI integration extend far beyond the un
 
 In 2025 and 2026, the global demand for high-end GPUs like the NVIDIA H100 and B200 has shaped enterprise infrastructure strategies. The choice between cloud-based GPU rental and on-premise deployments involves a complex balancing of latency, security, and long-term ROI. H100 instances on major cloud platforms have stabilized at approximately $2 to $3 per hour, reflecting a 64-75% decline from their initial peaks. However, the total operational cost of these systems must also factor in the rapid depreciation of hardware. In early 2025, Amazon signaled a shift in its depreciation policies, shortening the useful life of AI infrastructure from six years to five, a move that implies a multibillion-dollar impact on earnings and highlights the risk of accelerated obsolescence. For organizations focusing on inference rather than pre-training, the NVIDIA L40S has emerged as a high-value alternative. Industry benchmarks from late 2025 show that the L40S provides an 88% cost reduction per million tokens compared to the A100 baseline, making it the preferred choice for RAG pipelines and medium-scale applications
 
-| GPU Configuration | Purchase. Price  | Cloud. Rental. Rate | Inference. Cost (per 1M tokens) | Training. Throughput (Samples/sec) |
-| :---------------- | :-------------- | :---------------- | :----------------------------- | :-------------------------------- |
-| NVIDIA H100 SXM   | $25,000–$30,000 | $2.25–$2.50/hr    | $0                             | 23,800                            |
-| NVIDIA A100 80GB  | $10,000–$12,000 | $1.20–$1.50/hr    | $0                             | 2,000                             |
-| NVIDIA L40S 48GB  | $7,500          | $0.80–$1.00/hr    | $0                             | 10,600                            |
+| GPU Configuration | Purchase. Price | Cloud. Rental. Rate | Inference. Cost (per 1M tokens) | Training. Throughput (Samples/sec) |
+| :---------------- | :-------------- | :------------------ | :------------------------------ | :--------------------------------- |
+| NVIDIA H100 SXM   | $25,000–$30,000 | $2.25–$2.50/hr      | $0                              | 23,800                             |
+| NVIDIA A100 80GB  | $10,000–$12,000 | $1.20–$1.50/hr      | $0                              | 2,000                              |
+| NVIDIA L40S 48GB  | $7,500          | $0.80–$1.00/hr      | $0                              | 10,600                             |
 
 On-premise deployments face additional "hidden" costs, including liquid cooling infrastructure (which can range from $15,000 to $100,000) and power grid constraints. In regions like. Northern. Virginia, data center demand has reached 93% of total grid capacity, leading to 3-4 year delays for new high-power approvals
 
@@ -65,13 +65,13 @@ The impact of LLMs on the structural integrity of software systems is documented
 
 ### **Code. Complexity and Churn**
 
-Analysis of over 211 million lines of code committed between 2020 and 2024 reveals multiple signatures of declining code quality. A key metric in this regard is "code churn"—the percentage of lines that are updated or reverted within two weeks of their authoring. Research from. GitClear suggests that increased churn is a direct indicator of downward pressure on code quality, as it represents code that was either incomplete or erroneous when initially committed
+Analysis of over 153 million lines of code committed between 2020 and 2023 reveals multiple signatures of declining code quality. A key metric in this regard is "code churn"—the percentage of lines that are updated or reverted within two weeks of their authoring. Research from. GitClear suggests that increased churn is a direct indicator of downward pressure on code quality, as it represents code that was either incomplete or erroneous when initially committed
 
 | Year | Total. Lines. Analyzed | Code. Churn. Rate | Code. Reuse. Index | Duplication. Incidence |
-| :--- | :------------------- | :-------------- | :--------------- | :-------------------- |
-| 2020 | 150M+                | Baseline        | High             | Low                   |
-| 2022 | 153M                 | Increased       | Declining        | Increasing            |
-| 2024 | 211M                 | High            | Low              | High                  |
+| :--- | :--------------------- | :---------------- | :----------------- | :--------------------- |
+| 2020 | 150M+                  | Baseline          | High               | Low                    |
+| 2022 | 153M                   | Increased         | Declining          | Increasing             |
+| 2023 | 153M                   | High              | Low                | High                   |
 
 This growth in duplication and the decline in reuse are attributed to the tendency of AI assistants to generate "localized" solutions without considering the broader architectural context. This leads to what is termed "architectural fragmentation," where different modules of a system follow inconsistent naming conventions and coding patterns, effectively building applications "outside traditional engineering frameworks"
 
@@ -103,12 +103,12 @@ Despite advancements in context length, current LLMs still struggle with the "lo
 
 The rise of autonomous coding agents in 2025 has highlighted the "verification premium" of AI automation. Agentic workflows, characterized by iterative planning and tool use, are inherently error-prone. Mistakes made in early stages of a workflow propagate and amplify as they move downstream, contaminating the final output. Verifying every step of an agentic workflow is "prohibitively high" in terms of latency and cost. Verification can increase monetary costs by up to 53.2x and latency by up to 28.9x for complex coding tasks. To address this, frameworks like **Sherlock** have been developed to perform "vulnerability-guided verifier placement." By identifying error-prone nodes and speculatively executing downstream tasks, Sherlock reduces execution time by 48.7% and verification costs by 26% while delivering an 18.3% accuracy gain over non-verifying baselines
 
-| Workflow. Component           | Non-Verifying. Baseline | Sherlock. Framework      | Speculative. Advantage      |
-| :--------------------------- | :--------------------- | :---------------------- | :------------------------- |
-| Avg. Accuracy                | Baseline               | \+18.3%                 | Improved. Reliability       |
-| Execution. Time (![][image1]) | 100%                   | 51.3%                   | 48.7% Reduction            |
-| Verification. Cost            | Low                    | Moderate (Selective)    | 26% lower than. Monte. Carlo |
-| Error. Propagation            | High                   | Low (Rollback/Recovery) | Early stopping             |
+| Workflow. Component           | Non-Verifying. Baseline | Sherlock. Framework     | Speculative. Advantage       |
+| :---------------------------- | :---------------------- | :---------------------- | :--------------------------- |
+| Avg. Accuracy                 | Baseline                | \+18.3%                 | Improved. Reliability        |
+| Execution. Time (![][image1]) | 100%                    | 51.3%                   | 48.7% Reduction              |
+| Verification. Cost            | Low                     | Moderate (Selective)    | 26% lower than. Monte. Carlo |
+| Error. Propagation            | High                    | Low (Rollback/Recovery) | Early stopping               |
 
 ## **SRE and Operational. Implications**
 

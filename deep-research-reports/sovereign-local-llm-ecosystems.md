@@ -8,7 +8,7 @@ The current state of open-weight models is characterized by a high degree of spe
 
 ### **Dense. Architectures and the Efficiency. Frontier**
 
-Dense models, such as the Llama 4 Scout and Maverick variants, represent the traditional transformer architecture where every parameter is activated for every token generated. While these models are conceptually simpler and often easier to optimize for high-speed "streaming" applications, they face a physical limit in a local context due to their high VRAM-per-token cost. However, the 2026 generation of dense models has achieved significant performance gains through distilled knowledge from much larger "teacher" models. For instance, the DeepSeek-R1-Distill-Qwen3-8B demonstrates that a dense 8-billion parameter model can match the reasoning capabilities of 235-billion parameter models in specific mathematical domains, such as the AIME benchmarks. This efficiency makes dense models the preferred choice for edge devices and laptops where memory is at a premium.
+Dense models, such as the Llama 4 Scout and Maverick variants, represent the traditional transformer architecture where every parameter is activated for every token generated. While these models are conceptually simpler and often easier to optimize for high-speed "streaming" applications, they face a physical limit in a local context due to their high VRAM-per-token cost. However, the 2025-2026 generation of dense models has achieved significant performance gains through distilled knowledge from much larger "teacher" models. For instance, the DeepSeek-R1-Distill-Qwen3-8B demonstrates that a dense 8-billion parameter model can match the reasoning capabilities of 235-billion parameter models in specific mathematical domains, such as the AIME benchmarks. This efficiency makes dense models the preferred choice for edge devices and laptops where memory is at a premium.
 
 ### **Mixture-of-Experts (MoE): Scaling. Without. Computational. Overload**
 
@@ -20,13 +20,13 @@ This leads to a significant reduction in the Floating. Point. Operations (FLOPs)
 
 The most significant advancement in 2026 is the emergence of reasoning-first LLMs. These models, exemplified by DeepSeek-R1, GLM-4, and Kimi K2 Thinking, do not merely predict the next token in a sequence; they utilize internal deliberation loops, often encapsulated in \<think\> tags, to perform multi-step planning and self-correction. This "thinking mode" allows the model to deliberate before producing an output, which dramatically improves performance in complex tasks like automated theorem proving, software engineering, and strategic planning
 
-| Model. Family | Developer     | Architecture      | Key Strength          | Target. Use Case     |
-| :----------- | :------------ | :---------------- | :-------------------- | :------------------ |
-| DeepSeek-R1  | deepseek-ai   | MoE \+ RL         | OpenAI-o1 parity      | Math/Code. Reasoning |
-| Qwen3-Next   | Alibaba. Cloud | Sparse. MoE        | 36T token training    | Multilingual. Agents |
-| Llama 4      | Meta          | Dense/Hybrid      | Massive. Ecosystem     | General. Assistant   |
-| GLM-4        | Zhipu AI      | MoE               | Interleaved. Reasoning | Agentic. Coding      |
-| Kimi K2      | Moonshot AI   | MoE (384 Experts) | Long. Context (1M+)    | Research/Legal      |
+| Model. Family | Developer      | Architecture      | Key Strength           | Target. Use Case     |
+| :------------ | :------------- | :---------------- | :--------------------- | :------------------- |
+| DeepSeek-R1   | deepseek-ai    | MoE \+ RL         | OpenAI-o1 parity       | Math/Code. Reasoning |
+| Qwen3-Next    | Alibaba. Cloud | Sparse. MoE       | 36T token training     | Multilingual. Agents |
+| Llama 4       | Meta           | Dense/Hybrid      | Massive. Ecosystem     | General. Assistant   |
+| GLM-4         | Zhipu AI       | MoE               | Interleaved. Reasoning | Agentic. Coding      |
+| Kimi K2       | Moonshot AI    | MoE (384 Experts) | Long. Context (1M+)    | Research/Legal       |
 
 5
 
@@ -46,16 +46,17 @@ A standard rule of thumb for VRAM requirements is based on the parameter count a
 
 The hardware market in 2026 is split between NVIDIA’s discrete GPU dominance and Apple’s Unified. Memory. Architecture (UMA).
 
-NVIDIA's newest flagship, the RTX 5090, features 32GB of GDDR7 memory with a bandwidth of approximately 1,792 GB/s This represents a 77% improvement over the previous generation, making it the premier choice for high-speed inference on models up to 30 billion parameters. However, even the 5090 cannot fit a full 70B model uncompressed, necessitating multi-GPU setups or aggressive quantization for the largest open-weight models. Apple’s M4 and M5 Max/Ultra chips take a different approach through. Unified. Memory. In these systems, the CPU, GPU, and Neural. Engine share a single pool of memory, which can be configured up to 512GB or more on high-end. Mac Studio models. While the raw token generation speed (decode) on a Mac may trail a 5090 by 20-30%, the ability to load a 405B model or a 671B MoE model into a single machine without complex multi-GPU orchestration is a transformative advantage for sovereign deployments
+NVIDIA's newest flagship, the RTX 5090, features 32GB of GDDR7 memory with a bandwidth of approximately 1,792 GB/s This represents a 77% improvement over the previous generation, making it the premier choice for high-speed inference on models up to 30 billion parameters. However, even the 5090 cannot fit a full 70B model uncompressed, necessitating multi-GPU setups or aggressive quantization for the largest open-weight models. Apple’s M3 Ultra and M4 Max chips take a different approach through. Unified. Memory. In these systems, the CPU, GPU, and Neural. Engine share a single pool of memory. The M3 Ultra Mac Studio can be configured with up to 512GB of unified memory (the maximum available), while the M4 Max Mac Studio supports up to 128GB. While the raw token generation speed (decode) on a Mac may trail a 5090 by 20-30%, the ability to load a 405B model or a 671B MoE model into a single machine without complex multi-GPU orchestration is a transformative advantage for sovereign deployments
 
 ### **Hardware. Performance. Tiers in 2026**
 
 | Tier           | Hardware          | Memory        | Best. For                | Price (Est.) |
-| :------------- | :---------------- | :------------ | :---------------------- | :----------- |
-| **Entry**      | RTX 4060 Ti       | 16GB VRAM     | 7B-8B Models            | $500         |
-| **Mid**        | Used RTX 3090     | 24GB VRAM     | 14B-32B Models          | $700-$900    |
+| :------------- | :---------------- | :------------ | :----------------------- | :----------- |
+| **Entry**      | RTX 4060 Ti       | 16GB VRAM     | 7B-8B Models             | $500         |
+| **Mid**        | Used RTX 3090     | 24GB VRAM     | 14B-32B Models           | $700-$900    |
 | **Flagship**   | RTX 5090          | 32GB VRAM     | 32B Models @ High. Speed | $1,999       |
-| **Pro**        | Mac Studio M4 Max | 128GB Unified | 70B Models              | $4,500+      |
+| **Pro**        | Mac Studio M3 Ultra | 512GB Unified | 70B-405B Models         | $4,500+      |
+| **Pro**        | Mac Studio M4 Max | 128GB Unified | 70B Models               | $4,500+      |
 | **Enterprise** | NVIDIA H100/H200  | 80GB VRAM     | Concurrent. Production   | $25,000+     |
 
 10
@@ -98,12 +99,12 @@ For enterprises needing to serve hundreds of concurrent users, vLLM is the prima
 LocalAI acts as a "Universal API Hub," providing a single front door for multiple AI tasks—including text generation, image creation, and audio transcription—all through an OpenAI-compatible API It can orchestrate different backends behind the scenes, such as routing a coding request to a vLLM instance while sending an image request to a local. Stable. Diffusion server. GPT4All remains the simplest option for privacy-first desktop use, specifically optimized for running on consumer-grade CPUs with a very small memory footprint
 
 | Runtime       | Target. Audience   | Deployment. Scenario       | Key Strength         |
-| :------------ | :---------------- | :------------------------ | :------------------- |
-| **Ollama**    | Developers        | Local. Workstations        | CLI UX / API Support |
-| **vLLM**      | Enterprise. Ops    | High-Concurrency. Clusters | Maximum. Throughput   |
-| **LM Studio** | Researchers       | GUI-based. Discovery       | Polish / Ease of Use |
+| :------------ | :----------------- | :------------------------- | :------------------- |
+| **Ollama**    | Developers         | Local. Workstations        | CLI UX / API Support |
+| **vLLM**      | Enterprise. Ops    | High-Concurrency. Clusters | Maximum. Throughput  |
+| **LM Studio** | Researchers        | GUI-based. Discovery       | Polish / Ease of Use |
 | **LocalAI**   | System. Architects | Multi-Model. Orchestration | OpenAI API Parity    |
-| **GPT4All**   | General. Users     | CPU-only. Hardware         | Lowest. Footprint     |
+| **GPT4All**   | General. Users     | CPU-only. Hardware         | Lowest. Footprint    |
 
 20
 
@@ -195,13 +196,13 @@ By hosting intelligence locally, enterprises eliminate "vendor lock-in" and the 
 While cloud-based AI appears cheaper in the short term due to its lack of upfront hardware costs, high-volume users find that local deployments are significantly more cost-effective over a 2-3 year horizon
 
 | Cost. Component   | Cloud API (Enterprise)      | Local. Sovereign (Workstation) |
-| :--------------- | :-------------------------- | :---------------------------- |
-| **Setup. Cost**   | $0                          | $4,000 \- $8,000              |
-| **Token. Cost**   | $15 \- $30 / million tokens | $0                            |
-| **Privacy. Risk** | Third-party handling        | Zero egress                   |
-| **Scaling**      | Pay-as-you-go (Unlimited)   | Hardware-capped               |
-| **Electricity**  | N/A                         | $0 \- $0 / kWh                |
-| **Maintenance**  | Included                    | Requires MLOps effort         |
+| :---------------- | :-------------------------- | :----------------------------- |
+| **Setup. Cost**   | $0                          | $4,000 \- $8,000               |
+| **Token. Cost**   | $15 \- $30 / million tokens | $0                             |
+| **Privacy. Risk** | Third-party handling        | Zero egress                    |
+| **Scaling**       | Pay-as-you-go (Unlimited)   | Hardware-capped                |
+| **Electricity**   | N/A                         | $0 \- $0 / kWh                 |
+| **Maintenance**   | Included                    | Requires MLOps effort          |
 
 13
 
