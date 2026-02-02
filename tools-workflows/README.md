@@ -98,3 +98,30 @@ flowchart LR
   EXT --> CCS[CCS<br>profile account switching<br>npm package]
   EXT --> OMC[Oh My Claude Code<br>multi agent orchestration<br>parallel modes]
 ```
+
+## MCP
+
+The Model Context Protocol (MCP) is an open standard that allows AI models like Claude to securely connect with both local and remote resources through standardized server implementations. Think of it as a universal adapter that lets AI assistants tap into databases, APIs, file systems, and cloud services in a consistent way. The ecosystem has grown dramatically, with over 11,000 MCP servers registered in 2025 and contributions from more than 15,000 developers on GitHub according to https://glama.ai/blog/2025-12-07-the-state-of-mcp-in-2025. The community has coalesced around a comprehensive collection of production-ready and experimental servers catalogued at https://github.com/punkpeye/awesome-mcp-servers, spanning everything from database connectors and browser automation to cloud platform integrations and specialized tools for fields like bioinformatics and aerospace.
+
+The landscape has matured significantly, with clear trends emerging around consolidation and platform evolution. Remote MCP servers have decisively won over local implementations due to ease of use and security considerations, while companies are increasingly building "MCP-first" SaaS APIs as a new distribution channel. The ecosystem now includes specialized hosting platforms, observability tools, integration platforms, and enterprise-focused private registries for audited servers. However, challenges remain around monetization models for open-source server authors and the sustainability of community-maintained projects, as roughly half of the initial wave of companies have either pivoted or shut down.
+
+Key Concepts:
+
+- **Server Categories**: The ecosystem spans aggregators, browser automation, cloud platforms, databases, communication tools, developer tools, knowledge management, and specialized domains
+- **Community Scale**: 80K Reddit members, 9.5K Discord members, 31M weekly NPM downloads, and at least $73M in venture capital raised by MCP-focused companies
+- **Technology Stack**: Servers are built in multiple languages including Python, TypeScript, Go, Rust, C#, and Java, supporting both local and cloud deployments
+- **Evolution**: The focus is shifting from chat-based usage to background agents and workflows, with new proposals like MCP Apps introducing interactive UI capabilities
+- **Enterprise Adoption**: Growing demand for private "intranet" registries where organizations can host and monitor their own audited MCP servers
+
+```mermaid
+graph TD
+    A[AI Client<br>Claude, Cursor, etc.] --> B[MCP Protocol]
+    B --> C[MCP Servers]
+    C --> D[Databases<br>MySQL, Postgres, etc.]
+    C --> E[Cloud Services<br>AWS, GCP, Cloudflare]
+    C --> F[Developer Tools<br>Git, IDE, Shell]
+    C --> G[Communication<br>Slack, Email, Teams]
+    C --> H[Data Sources<br>APIs, File Systems]
+    I[Hosting Platforms<br>Glama, FastMCP] -.manages.-> C
+    J[Registries<br>Smithery, Open-MCP] -.catalogs.-> C
+```
