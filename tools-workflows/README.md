@@ -2,28 +2,49 @@
 
 ## Agent Skills ecosystem
 
-https://agentskills.io/home frames “Agent Skills” as portable, version-controlled packages that give agents on-demand access to procedural knowledge plus company, team, and user context so they can do reliable real work.  It positions skills as reusable building blocks across products, benefiting skill authors, agent builders, and enterprises by enabling domain expertise, new capabilities, repeatable workflows, and interoperability. 
+Agent Skills frames “skills” as portable, version-controlled packages of procedural knowledge and context that AI agents can load on demand, so they can do real work more reliably instead of guessing missing details.  The core idea is that the same skill can be reused across different agent products, while also helping teams capture and share organizational know-how in a consistent way.  To explore the concept: https://agentskills.io/home and the associated repo entry point: https://github.com/agentskills/agentskills. 
 
-https://github.com/vercel-labs/skills provides the operational layer: a CLI that installs and manages skills across many agent environments, using `npx skills add ...` and related commands to list, find, remove, check, and update skills.  It also defines the core artifact shape as `SKILL.md` with YAML frontmatter including required `name` and `description`, with skills discoverable in common repo locations and installable from GitHub, GitLab, generic git URLs, or local paths. [github](https://github.com/mermaid-js/mermaid)
+On the ecosystem side, Vercel’s open-source CLI at https://github.com/vercel-labs/skills positions skills as installable “instruction sets” defined in `SKILL.md` files with simple YAML frontmatter, fetched from GitHub, GitLab, any git URL, or even local paths.  In practice, this makes skills feel a bit like “plugins for agent behavior”: you can add, list, find, remove, and update skills, and target different coding agents such as Claude Code, Codex, Cursor, OpenCode, and many more. [github](https://github.com/mermaid-js/mermaid)
 
-https://skills.sh/ acts as the discovery surface, presenting a directory with leaderboard and trending views that point to specific skill repositories and named skills.  Taken together, https://agentskills.io/home describes why and what skills are, https://github.com/vercel-labs/skills makes them installable and agent-compatible in practice, and https://skills.sh/ helps users find skills to install, while https://github.com/agentskills/agentskills is included as a GitHub source alongside this ecosystem. [docs.github](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams)
+Discovery happens through a directory-style site at https://skills.sh/ that surfaces a large leaderboard of skills and repositories, making it easy to see what’s popular and find starting points.  Put together with the CLI’s `find` and install flows, the story becomes cohesive: write skills once, publish them in git, discover them via a shared index, and install them into whichever agent you use. [docs.github](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams)
 
-- Skills package procedural knowledge and context into reusable units that agents can load on demand.   
-- The CLI standardizes installing and managing `SKILL.md`-based skills across many agent tools. [github](https://github.com/mermaid-js/mermaid)
-- The directory site indexes and ranks skills to support discovery, connecting users to repositories to install from. [docs.github](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams)
+Key concepts to keep in mind:
+- Skills are reusable instructions plus context that agents can load on demand to perform specialized tasks and repeatable workflows. 
+- Interoperability is a main goal: the same skill can be used across different “skills-compatible” agent products. 
+- The `npx skills` CLI can install skills from many source formats and manage them over time, including updates and agent-specific installation targets. [github](https://github.com/mermaid-js/mermaid)
+- The skills directory at https://skills.sh/ provides a browseable, leaderboard-like view of the ecosystem to help with discovery. [docs.github](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams)
 
 ```mermaid
-flowchart LR
-  A["Agent Skills<br>concept and motivation<br>https://agentskills.io/home"]
-  B["Skills format<br>SKILL.md with YAML<br>name and description"]
-  C["Installer and manager CLI<br>https://github.com/vercel-labs/skills"]
-  D["Skills directory and leaderboard<br>https://skills.sh/"]
-  E["Skill repositories<br>example source<br>https://github.com/agentskills/agentskills"]
-  F["Compatible agents<br>load installed skills"]
-
-  A --> B
-  B --> C
-  D --> E
+graph TD
+  A[Skill authors<br>write SKILL.md] --> B[Git repositories<br>publish skills]
+  B --> C[npx skills CLI<br>install and update]
+  C --> D[Coding agents<br>Claude Code Codex Cursor OpenCode]
+  B --> E[skills.sh directory<br>browse and discover]
   E --> C
-  C --> F
+  F[Teams and enterprises<br>capture knowledge] --> B
+  D --> G[End users<br>add capabilities]
+```
+
+## CodeRabbit
+
+CodeRabbit is a **code** review system that tries to cover the whole journey from “I’m still editing” to “ready to merge,” combining pull request reviews with local feedback in your editor and terminal.  Its PR reviewer focuses on catching real bugs and maintainability issues early, supports one-click fixes, and can refine its future feedback based on what your team accepts or rejects over time.  You can explore the main docs at https://docs.coderabbit.ai/ and the PR review overview at https://docs.coderabbit.ai/overview/pull-request-review. 
+
+A key idea across the docs is shifting review left while keeping the PR as the shared collaboration point: in IDEs like VS Code, Cursor, and Windsurf you can review uncommitted changes and apply fixes immediately, while the CLI is designed for pre-commit checks and CI-friendly workflows.  The CLI supports different output modes including interactive, plain text, and a “prompt-only” mode meant to hand findings to an AI coding agent, and it can also auto-read team standards files like claude.md and .cursorrules so reviews match your conventions.  See the IDE and CLI overview at https://docs.coderabbit.ai/overview/ide-cli-review and the CLI docs at https://docs.coderabbit.ai/cli. 
+
+- Review coverage: PR reviews update incrementally as new commits arrive, while local IDE and CLI reviews focus on uncommitted changes when context is freshest.   
+- Fix workflow: “One-click fixes” exist in PRs and the IDE flow, and the CLI supports quick fixes plus handoff of harder changes to AI agents.   
+- Context and standards: Reviews can be context-aware beyond changed lines, and can automatically apply your documented team rules via common agent config files.   
+- Toolchain fit: PR reviews can link work items from GitHub, Jira, or Linear, and the CLI is explicitly positioned as useful in CI CD pipelines.   
+
+```mermaid
+graph TD
+  A["CodeRabbit<br>Platform"] --> B["PR reviewer<br>GitHub workflow"]
+  A --> C["IDE extension<br>VS Code based IDEs"]
+  A --> D["CLI tool<br>Pre commit and CI"]
+  B --> E["Issue links<br>GitHub Jira Linear"]
+  C --> F["One click fixes<br>Local feedback"]
+  D --> G["Output modes<br>Interactive plain prompt only"]
+  C --> H["Team standards files<br>claude.md .cursorrules"]
+  D --> H
+  G --> I["AI coding agents<br>Claude Code Cursor Codex Gemini"]
 ```
