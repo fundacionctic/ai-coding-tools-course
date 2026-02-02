@@ -225,72 +225,57 @@ flowchart LR
 
 ## Model Context Protocol (MCP)
 
-**What it is:** An open standard that allows AI models to securely connect with local and remote resources through standardized server implementations.
+**What it is:** A universal protocol for connecting AI assistants to external data sources and tools—effectively functioning as "USB-C for AI applications."
 
-**Why it matters:** Provides a universal adapter for AI assistants to access databases, APIs, file systems, and cloud services consistently—like USB-C for AI integrations.
+**Why it matters:** Solves the challenge of keeping AI context-aware by providing a standard way to interface with local files, databases, and APIs. Build a connection once and use it across many different AI applications.
 
 ### Key Resources
 
+- **Introduction:** https://modelcontextprotocol.io/docs/getting-started/intro
+- **Specification:** https://modelcontextprotocol.io/specification/2025-11-25
+- **Official registry:** https://modelcontextprotocol.io/registry/about
+- **Docker integration:** https://docs.docker.com/ai/mcp-catalog-and-toolkit/
+- **Docker catalog:** https://docs.docker.com/ai/mcp-catalog-and-toolkit/catalog/
+- **Docker toolkit:** https://docs.docker.com/ai/mcp-catalog-and-toolkit/toolkit/
+- **Docker gateway:** https://docs.docker.com/ai/mcp-catalog-and-toolkit/mcp-gateway/
+- **Community servers:** https://github.com/punkpeye/awesome-mcp-servers
 - **State of MCP 2025:** https://glama.ai/blog/2025-12-07-the-state-of-mcp-in-2025
-- **Awesome MCP Servers:** https://github.com/punkpeye/awesome-mcp-servers
 
-### Ecosystem Scale (2025)
+### How It Works
 
-- **11,000+** MCP servers registered
-- **15,000+** developers contributing on GitHub
-- **80K** Reddit members
-- **9.5K** Discord members
-- **31M** weekly NPM downloads
-- **$73M+** venture capital raised by MCP-focused companies
+MCP uses a client-server architecture that separates concerns:
 
-### Server Categories
+1. **Client** (the AI assistant) communicates via the protocol
+2. **Server** (the tool or data source) exposes capabilities
+3. **Gateway** (optional) manages servers in isolated containers
 
-The ecosystem spans diverse domains:
+The ecosystem evolved throughout 2025 from experimental servers to secure, production-ready infrastructure. Docker's integration addresses complexity and security risks by running MCP servers as isolated containers—eliminating dependency conflicts while controlling AI access to local resources.
 
-- **Aggregators** - Unified access to multiple services
-- **Browser automation** - Web interaction and scraping
-- **Cloud platforms** - AWS, GCP, Cloudflare integrations
-- **Databases** - MySQL, Postgres, MongoDB connectors
-- **Communication** - Slack, Email, Teams integration
-- **Developer tools** - Git, IDE, shell access
-- **Knowledge management** - Note-taking, documentation systems
-- **Specialized domains** - Bioinformatics, aerospace, and more
+### Core Concepts
 
-### Technology Stack
-
-| Language   | Usage                                   |
-| ---------- | --------------------------------------- |
-| Python     | Popular for data and ML integrations    |
-| TypeScript | Web and Node.js ecosystems              |
-| Go         | High-performance server implementations |
-| Rust       | System-level integrations               |
-| C# / Java  | Enterprise integrations                 |
-
-### Key Trends
-
-1. **Remote over local** - Remote MCP servers have become the standard due to ease of use and security
-2. **MCP-first APIs** - Companies building SaaS APIs with MCP as primary distribution channel
-3. **Enterprise adoption** - Growing demand for private registries with audited servers
-4. **Platform evolution** - Shift from chat-based to background agents and workflows
-5. **Interactive capabilities** - New proposals like MCP Apps introducing UI features
-
-### Challenges
-
-- **Monetization** - Unclear models for open-source server authors
-- **Sustainability** - ~50% of initial wave companies have pivoted or shut down
-- **Discovery** - Need for better cataloging and quality assurance
+| Concept                 | Description                                                               |
+| ----------------------- | ------------------------------------------------------------------------- |
+| **Standardization**     | Universal protocol replaces custom integrations for each AI tool          |
+| **Client-Server model** | Clean separation between AI (client) and data/tool sources (server)       |
+| **Security isolation**  | Docker Gateway runs servers in containers for safe execution              |
+| **Ecosystem maturity**  | Shift from experimental to enterprise adoption with "MCP-first" SaaS APIs |
+| **Autonomous agents**   | Focus on background task execution, not just conversational interfaces    |
 
 ### Architecture Overview
 
 ```mermaid
-graph TD
-    A[AI Client<br>Claude, Cursor, etc.] --> B[MCP Protocol]
-    B --> C[MCP Servers]
-    C --> D[Databases<br>MySQL, Postgres, etc.]
-    C --> E[Cloud Services<br>AWS, GCP, Cloudflare]
-    C --> F[Developer Tools<br>Git, IDE, Shell]
-    C --> G[Communication<br>Slack, Email, Teams]
-    C --> H[Data Sources<br>APIs, File Systems]
-    I[Hosting Platforms<br>Glama, FastMCP] -.manages.-> C
-    J[Registries<br>Smithery, Open-MCP] -.catalogs.-> C
+graph LR
+    subgraph "User's Computer or Cloud"
+        A[AI Client <br> e.g. Claude Desktop, IDE] <-->|MCP Protocol| B[MCP Gateway / Host <br> e.g. Docker Toolkit]
+    end
+    
+    subgraph "Isolated Context Tools"
+        B <-->|manages| C[MCP Server A <br> e.g. Google Drive]
+        B <-->|manages| D[MCP Server B <br> e.g. PostgreSQL]
+        B <-->|manages| E[MCP Server C <br> e.g. GitHub]
+    end
+
+    C -.-> F[(Files)]
+    D -.-> G[(Database)]
+    E -.-> H[(Code Repos)]
 ```
