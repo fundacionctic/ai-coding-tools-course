@@ -223,6 +223,34 @@ flowchart LR
 
 ---
 
+## DeepWiki (Devin)
+
+**What it is:** Devin's auto-generated wiki for codebases that indexes repositories and produces architecture diagrams, source links, and summaries to help you quickly understand unfamiliar code.
+
+**Why it matters:** It gives teams an always-available, context-grounded knowledge base and makes it easier to ask precise questions about a codebase via "Ask Devin."
+
+### Key Resources
+
+- **DeepWiki product overview:** https://docs.devin.ai/work-with-devin/deepwiki
+- **Public DeepWiki site:** https://deepwiki.com/
+- **DeepWiki MCP Server:** https://docs.devin.ai/work-with-devin/deepwiki-mcp
+
+### How It Works
+
+1. **Auto-indexing:** DeepWiki is generated during repo connection/onboarding.
+2. **Wiki + diagrams:** It builds documentation with architecture diagrams and links to source.
+3. **Ask Devin:** Devin can answer questions using the wiki context.
+
+### Steering the Output
+
+You can control wiki generation with a `.devin/wiki.json` file (repo notes + specific pages) to ensure critical areas are documented.
+
+### Programmatic Access (MCP)
+
+The DeepWiki MCP server exposes tools to read wiki structure, read wiki contents, and ask questions about public repos.
+
+---
+
 ## Model Context Protocol (MCP)
 
 **What it is:** A universal protocol for connecting AI assistants to external data sources and tools—effectively functioning as "USB-C for AI applications."
