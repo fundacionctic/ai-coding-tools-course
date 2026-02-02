@@ -2,37 +2,101 @@
 
 This repository contains documentation and references—primarily AI-generated using the Deep Research feature of Perplexity or Gemini—to support the knowledge base for a 2-hour course focused on AI coding tools and agentic IDEs such as Claude Code, Codex CLI and GitHub Copilot.
 
+## Repository Structure
+
+```
+ai-coding-tools-course/
+├── course-materials/       # Teaching and learning resources
+│   ├── slides/            # PDF presentations
+│   └── workflows/         # Practical workflow examples
+├── research/              # Deep research reports (categorized)
+│   ├── foundations/       # Core concepts and architectures
+│   ├── tools/             # Tool-specific analyses
+│   ├── risks/             # Security and limitations
+│   ├── solutions/         # Alternative approaches
+│   └── support/           # Supporting tools
+├── prompts/               # Templates used to generate content
+├── tools-workflows/       # Practical ecosystem guide
+└── example-api/           # Code examples
+```
+
+## Content Overview
+
+### Course Materials
+- **[Slides](./course-materials/slides/)** - PDF presentations covering all major topics
+- **[Workflows](./course-materials/workflows/)** - Practical workflow examples (e.g., CRUD operations with Copilot)
+
+### Research Reports
+
+#### Foundations
+Core concepts, architectures, and comparative analyses that form the theoretical foundation:
+- [Agentic Software Engineering](./research/foundations/agentic-software-engineering-report.md) - Technical foundations & enterprise governance frameworks
+- [Agentic IDE Tools Comparison](./research/foundations/agentic-ide-tools-comparison.md) - Comparative analysis (2021-2026)
+- [Model Context Protocol](./research/foundations/model-context-protocol.md) - MCP architecture and ecosystem
+
+#### Tools
+Detailed analyses of specific AI coding assistants:
+- [Claude Code](./research/tools/tool-claude-code.md) - Terminal-native agentic coding tool
+- [Cursor IDE](./research/tools/tool-cursor.md) - AI-first code editor
+- [GitHub Copilot](./research/tools/tool-github-copilot.md) - AI-assisted pair programmer
+
+#### Risks
+Security vulnerabilities, limitations, and constraints:
+- [LLM Risks Research](./research/risks/llm-risks-research.md) - Security vulnerabilities & reproducibility threats
+- [LLM Constraints](./research/risks/llm-constraints-software-engineering.md) - Technical & economic limitations
+
+#### Solutions
+Alternative approaches and privacy-focused options:
+- [Sovereign Local LLM Ecosystems](./research/solutions/sovereign-local-llm-ecosystems.md) - Privacy-first systems
+- [Local-Only Setups](./research/solutions/local-only-setups.md) - Hardware configurations
+- [Enhancement Ecosystem](./research/solutions/enhancement-ecosystem.md) - Tools that extend AI coding assistants
+
+#### Support
+Supporting tools and platforms:
+- [Documentation Tools](./research/support/documentation-tools.md) - AI-powered documentation platforms
+
+### Prompts
+Templates used to generate the research content:
+- [Research Tool Prompt](./prompts/research-tool.md) - Template for deep research using AI
+- [Slides Prompt](./prompts/slides.md) - Guidelines for presentation generation
+
+### Tools & Workflows Guide
+- **[tools-workflows/](./tools-workflows/)** - Comprehensive guide to AI coding tool ecosystems (Agent Skills, CodeRabbit, Ollama, Claude Code extensions, DeepWiki, MCP)
+
 ## Document Relationships
 
-The following diagram illustrates how the different documents in this repository relate to each other in terms of concepts and contents:
+The following diagram illustrates how the different documents relate conceptually:
 
 ```mermaid
 graph TB
     %% Core Concepts
-    ASE[agentic-software-engineering-report.md<br/>Technical Foundations & Architectures]
-    COMP[agentic-ide-tools-comparison.md<br/>Comparative Analysis 2021-2026]
+    ASE[research/foundations/<br/>agentic-software-engineering-report.md]
+    COMP[research/foundations/<br/>agentic-ide-tools-comparison.md]
+    MCP[research/foundations/<br/>model-context-protocol.md]
     
     %% Specific Tools
-    CLAUDE[tool-claude-code.md<br/>Claude Code Analysis]
-    CURSOR[tool-cursor.md<br/>Cursor IDE Guide]
-    COPILOT[tool-github-copilot.md<br/>GitHub Copilot Analysis]
+    CLAUDE[research/tools/<br/>tool-claude-code.md]
+    CURSOR[research/tools/<br/>tool-cursor.md]
+    COPILOT[research/tools/<br/>tool-github-copilot.md]
     
     %% Risks & Constraints
-    RISKS[llm-risks-research.md<br/>Security Vulnerabilities]
-    CONSTRAINTS[llm-constraints-software-engineering.md<br/>Technical & Economic Constraints]
+    RISKS[research/risks/<br/>llm-risks-research.md]
+    CONSTRAINTS[research/risks/<br/>llm-constraints-software-engineering.md]
     
-    %% Local Solutions
-    SOVEREIGN[sovereign-local-llm-ecosystems.md<br/>Privacy-First LLM Systems]
-    LOCAL[local-only-setups.md<br/>Hardware Configurations]
+    %% Solutions
+    SOVEREIGN[research/solutions/<br/>sovereign-local-llm-ecosystems.md]
+    LOCAL[research/solutions/<br/>local-only-setups.md]
+    ENHANCE[research/solutions/<br/>enhancement-ecosystem.md]
     
-    %% Enhancement & Support
-    ENHANCE[enhancement-ecosystem.md<br/>AI Tools Enhancement Projects]
-    DOCS[documentation-tools.md<br/>AI Documentation Platforms]
-    MCP[model-context-protocol.md<br/>MCP Architecture]
+    %% Support
+    DOCS[research/support/<br/>documentation-tools.md]
     
     %% Course Materials
-    PROMPT[research-tool.md<br/>Research Prompt Template]
-    SLIDES[slides.md<br/>Course Slide Guidelines]
+    PROMPT[prompts/<br/>research-tool.md]
+    SLIDES_PROMPT[prompts/<br/>slides.md]
+    SLIDES[course-materials/slides/]
+    WORKFLOWS[course-materials/workflows/]
+    TOOLS_WF[tools-workflows/]
     
     %% Relationships - Core to Tools
     ASE -->|implements| CLAUDE
@@ -65,47 +129,44 @@ graph TB
     PROMPT -->|generates| CLAUDE
     PROMPT -->|generates| CURSOR
     PROMPT -->|generates| COPILOT
-    SLIDES -->|presents| ASE
-    SLIDES -->|presents| COMP
-    SLIDES -->|presents| RISKS
-    SLIDES -->|presents| SOVEREIGN
+    SLIDES_PROMPT -->|guides| SLIDES
+    ASE & COMP & RISKS & SOVEREIGN -->|presented in| SLIDES
+    TOOLS_WF -->|practical guide| ENHANCE
+    TOOLS_WF -->|practical guide| MCP
+    CLAUDE & CURSOR & COPILOT -->|workflows in| WORKFLOWS
     
     %% Styling
     classDef foundation fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
     classDef tools fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
     classDef risks fill:#ffebee,stroke:#c62828,stroke-width:2px
-    classDef local fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    classDef solutions fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
     classDef support fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
     classDef course fill:#fce4ec,stroke:#c2185b,stroke-width:2px
     
-    class ASE,COMP foundation
+    class ASE,COMP,MCP foundation
     class CLAUDE,CURSOR,COPILOT tools
     class RISKS,CONSTRAINTS risks
-    class SOVEREIGN,LOCAL local
-    class ENHANCE,DOCS,MCP support
-    class PROMPT,SLIDES course
+    class SOVEREIGN,LOCAL,ENHANCE solutions
+    class DOCS support
+    class PROMPT,SLIDES_PROMPT,SLIDES,WORKFLOWS,TOOLS_WF course
 ```
 
 **Legend:**
-- **Blue (Foundation)**: Core concepts and comparative analyses
+- **Blue (Foundation)**: Core concepts and architectures
 - **Purple (Tools)**: Specific tool implementations
-- **Red (Risks)**: Security and constraint analyses
-- **Green (Local)**: Privacy-focused alternatives
-- **Orange (Support)**: Enhancement and documentation tools
-- **Pink (Course)**: Course materials and templates
+- **Red (Risks)**: Security and constraints
+- **Green (Solutions)**: Alternative approaches and enhancements
+- **Orange (Support)**: Documentation tools
+- **Pink (Course)**: Teaching materials and guides
 
-The diagram shows solid arrows for direct implementation/comparison relationships and dashed arrows for concerns/motivations.
+Solid arrows show direct relationships; dashed arrows show concerns/motivations.
 
-## Markdown Files
+## Getting Started
 
-- [agentic-ide-tools-comparison.md](./deep-research-reports/agentic-ide-tools-comparison.md) - Comparative analysis of agentic software engineering environments and IDEs (2021-2026)
-- [agentic-software-engineering-report.md](./deep-research-reports/agentic-software-engineering-report.md) - Technical foundations, architectures, and enterprise governance frameworks for agentic software engineering
-- [documentation-tools.md](./deep-research-reports/documentation-tools.md) - Market landscape report on AI-powered software documentation tools covering repository-level generators, API documentation platforms, and embedded code documentation systems
-- [enhancement-ecosystem.md](./deep-research-reports/enhancement-ecosystem.md) - Research on GitHub repositories (200+ stars) that enhance AI coding tools through pre-packaged skills, configuration management, format conversion, and context optimization frameworks
-- [llm-constraints-software-engineering.md](./deep-research-reports/llm-constraints-software-engineering.md) - Analysis of technical, economic, and structural constraints of LLMs in software engineering
-- [llm-risks-research.md](./deep-research-reports/llm-risks-research.md) - Comprehensive analysis of five high-impact research papers on security vulnerabilities, reproducibility threats, and hidden costs of using LLMs in software engineering
-- [research-tool.md](./prompts/research-tool.md) - Prompt template for conducting in-depth research on AI tools using official documentation
-- [sovereign-local-llm-ecosystems.md](./deep-research-reports/sovereign-local-llm-ecosystems.md) - Guide to engineering local, privacy-first large language model ecosystems
-- [tool-claude-code.md](./deep-research-reports/tool-claude-code.md) - Technical analysis and practical developer guide for Claude Code terminal-native agentic coding tool
-- [tool-cursor.md](./deep-research-reports/tool-cursor.md) - Technical reference guide for Cursor AI-first code editor
-- [tool-github-copilot.md](./deep-research-reports/tool-github-copilot.md) - Comprehensive technical analysis of GitHub Copilot AI-assisted pair programmer
+For newcomers to the repository:
+
+1. **Start with course materials** - Review [slides](./course-materials/slides/) for high-level overviews
+2. **Explore research foundations** - Understand [core concepts](./research/foundations/)
+3. **Learn specific tools** - Deep dive into [tool-specific analyses](./research/tools/)
+4. **Check practical guides** - Review [tools-workflows](./tools-workflows/) for ecosystem recommendations
+5. **Understand tradeoffs** - Read about [risks](./research/risks/) and [solutions](./research/solutions/)
