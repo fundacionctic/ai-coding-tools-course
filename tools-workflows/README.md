@@ -48,3 +48,29 @@ graph TD
   D --> H
   G --> I["AI coding agents<br>Claude Code Cursor Codex Gemini"]
 ```
+
+## Ollama
+
+Ollama is a way to run and work with language models through a simple local workflow: install it, pull or run a model from the terminal, and then use that same engine from tools you already use.  The docs hub at https://docs.ollama.com/ points you to the Quickstart and integrations so you can go from “first model running” to “model inside my editor” without having to learn a whole new platform. 
+
+A helpful mental model is that Ollama gives you one consistent interface, and you choose where the model runs: **local** on your machine when it fits, or “cloud models” when you want something bigger without needing a powerful GPU.  Cloud models are designed to offload execution to Ollama’s cloud service while keeping your local tools and workflows the same, and they require signing in with an ollama.com account.  If you prefer to call cloud models directly, Ollama also describes using ollama.com as a remote host via its API with an API key (for example setting `OLLAMA_API_KEY` and listing models via `https://ollama.com/api/tags`). 
+
+Once you’re comfortable with the basics, the same models can show up in developer tools: the Quickstart highlights `ollama launch` as a fast way to set up coding integrations (including Claude Code).  In VS Code, the integration is presented as selecting Ollama as the provider and then choosing models from the model manager.  For Claude Code, the docs describe connecting through an Anthropic-compatible API by pointing the base URL to your local Ollama server (for example `http://localhost:11434`) and then running Claude Code with an Ollama model. 
+
+Key concepts to keep in mind
+- One workflow: run models from the CLI and reuse them via integrations and APIs. 
+- Two execution modes: local models on your machine, cloud models offloaded to Ollama’s cloud for larger capability. 
+- Editor and agent integrations: VS Code can pick Ollama as a provider, and Claude Code can connect via an Anthropic-compatible API to a local Ollama endpoint. 
+- Useful starting links: https://docs.ollama.com/ and https://docs.ollama.com/quickstart plus cloud and integrations at https://docs.ollama.com/cloud, https://docs.ollama.com/integrations/vscode, https://docs.ollama.com/integrations/claude-code. 
+
+```mermaid
+flowchart LR
+  U[You] --> CLI[Ollama CLI<br>run pull launch]
+  CLI --> L[Local models<br>run on your machine]
+  CLI --> C[Cloud models<br>offloaded to Ollama cloud]
+  C --> O[ollama.com API<br>remote host with API key]
+  L --> I[Integrations]
+  C --> I
+  I --> V[VS Code<br>provider set to Ollama]
+  I --> A[Claude Code<br>Anthropic compatible API<br>base url localhost 11434]
+```
