@@ -279,3 +279,57 @@ graph LR
     D -.-> G[(Database)]
     E -.-> H[(Code Repos)]
 ```
+
+### Some MCP Server Recommendations
+
+#### Context7 (Upstash)
+
+- **Repository:** [github.com/upstash/context7](https://github.com/upstash/context7)
+- **Purpose:** Retrieves up-to-date, version-specific documentation and code examples  
+- **Key Features:**
+    - Dynamic injection of current official documentation
+    - Version-specific code examples from source
+    - 65% token reduction, 38% lower latency (2026 update)
+    - 30% fewer tool calls
+
+#### Smart Tree
+
+- **Repository:** [github.com/8b-is/smart-tree](https://github.com/8b-is/smart-tree)
+- **Purpose:** Context-aware directory visualization with semantic search and compression  
+- **Key Features:**
+    - 30+ MCP tools for comprehensive file operations
+    - 70–90% token reduction through efficient formats
+    - MEM8 quantum compression (100:1 ratios)
+    - AST-aware code editing
+    - 10–24× faster than traditional tree commands
+
+#### Playwright MCP
+
+- **Official (Microsoft):** [github.com/microsoft/playwright-mcp](https://github.com/microsoft/playwright-mcp)
+- **Purpose:** Browser automation using Playwright's accessibility tree  
+- **Key Features:**
+    - Structured accessibility snapshots (no screenshots needed)
+    - Works with Claude Desktop, Cursor, Cline, VS Code
+    - Fast and lightweight—operates on structured data, not pixels
+    - No vision models required
+
+#### Sequential Thinking
+
+- **Official server:** [github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking](https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking)
+- **Purpose:** Structured problem-solving through dynamic thought sequences  
+- **Key Features:**
+    - Break complex problems into manageable steps
+    - Revise and refine thoughts as understanding deepens
+    - Branch into alternative reasoning paths
+    - Dynamically adjust thought count
+
+#### Docker MCP Gateway
+
+- **Repository:** [github.com/docker/mcp-gateway](https://github.com/docker/mcp-gateway)
+- **Purpose:** Centralized proxy for orchestrating MCP servers in isolated Docker containers  
+- **Key Features:**
+    - Container-based isolation with restricted privileges and resource limits
+    - Secure credential management through Docker Desktop
+    - Built-in OAuth flows for service authentication
+    - Logging and call-tracing for governance
+    - Dynamic server discovery with `mcp-find` and `mcp-add` tools
