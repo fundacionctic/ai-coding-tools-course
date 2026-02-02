@@ -74,3 +74,27 @@ flowchart LR
   I --> V[VS Code<br>provider set to Ollama]
   I --> A[Claude Code<br>Anthropic compatible API<br>base url localhost 11434]
 ```
+
+## Claude Code Ecosystem
+
+Claude Code is best understood as a “coding agent in your terminal”: you describe a task, and it iterates through an agentic loop of **gather context**, take action, and verify results, using tools like file operations, search, shell execution, and web lookups as needed.  The official overview frames it as something that not only answers questions, but can directly edit files, run commands, and fit into existing developer workflows across CLI and other environments, while relying on a project-local `CLAUDE.md` to carry instructions across otherwise fresh sessions.  See https://code.claude.com/docs/en/overview and https://code.claude.com/docs/en/how-claude-code-works for the conceptual model and how the loop, tools, sessions, and context management fit together. [pressbooks.atlanticoer-relatlantique](https://pressbooks.atlanticoer-relatlantique.ca/writingforsuccess/chapter/6-1-purpose-audience-tone-and-content/)
+
+Two significant GitHub projects sit naturally “on top” of that core loop by focusing on workflow-level ergonomics and orchestration rather than reinventing the agent itself. CCS at https://github.com/kaitranntt/ccs is positioned as a CLI that helps with account or profile switching for Claude Code, with example setup commands like `ccs auth create primary` and `ccs auth create secondary`, and it’s distributed as `@kaitranntt/ccs` on npm.  Oh My Claude Code at https://github.com/Yeachan-Heo/oh-my-claudecode (also described at https://yeachan-heo.github.io/oh-my-claudecode-website/) presents itself as an “enhancement system” that adds multi-agent orchestration and ready-made modes you can trigger with short phrases, aiming to parallelize work across specialized agents for faster execution. [linkedin](https://www.linkedin.com/pulse/i-built-something-myself-5-days-later-developers-started-tam-nhu-tran-rtbte)
+
+Key ideas to keep in mind:
+
+- Agentic loop: Context then action then verification, repeated until the task is done. [pressbooks.atlanticoer-relatlantique](https://pressbooks.atlanticoer-relatlantique.ca/writingforsuccess/chapter/6-1-purpose-audience-tone-and-content/)
+- Tool-backed agency: Reading and editing files, running commands, searching, and web access are first-class capabilities, not add-ons. [pressbooks.atlanticoer-relatlantique](https://pressbooks.atlanticoer-relatlantique.ca/writingforsuccess/chapter/6-1-purpose-audience-tone-and-content/)
+- Project guidance: Put durable rules and conventions in `CLAUDE.md` because sessions do not persist memory across runs. [pressbooks.atlanticoer-relatlantique](https://pressbooks.atlanticoer-relatlantique.ca/writingforsuccess/chapter/6-1-purpose-audience-tone-and-content/)
+- Workflow extensions: Tools like https://github.com/kaitranntt/ccs target operational friction like switching profiles, while https://github.com/Yeachan-Heo/oh-my-claudecode targets coordination friction like parallel work. [github](https://github.com/Yeachan-Heo/oh-my-claudecode/blob/main/AGENTS.md)
+
+```mermaid
+flowchart LR
+  U[You<br>task request] --> CC[Claude Code<br>CLI and environment]
+  CC --> LOOP[Agentic loop<br>gather context<br>take action<br>verify results]
+  LOOP --> TOOLS[Tools<br>files search exec web]
+  CC --> GUIDE[CLAUDE.md<br>project rules<br>repeatable context]
+  CC --> EXT[Extensions layer<br>workflow helpers]
+  EXT --> CCS[CCS<br>profile account switching<br>npm package]
+  EXT --> OMC[Oh My Claude Code<br>multi agent orchestration<br>parallel modes]
+```
