@@ -57,6 +57,12 @@ class ItemCreate(BaseModel):
     price: float
 
 
+class ItemUpdate(BaseModel):
+    name: str | None = None
+    description: str | None = None
+    price: float | None = Field(default=None, gt=0)
+
+
 class Item(ItemCreate):
     id: str = Field(alias="_id")
     
@@ -142,3 +148,34 @@ async def delete_item(item_id: str):
         raise HTTPException(status_code=404, detail="Item not found")
     
     return {"message": f"Item {item_id} deleted"}
+
+
+@app.patch("/items/{item_id}", tags=["Items"])
+async def update_item(item_id: str, item: ItemUpdate):
+    """Partially update a specific item by ID."""
+    collection = get_items_collection()
+    
+    try:
+        object_id = ObjectId(item_id)
+    except Exception:
+        raise HTTPException(status_code=400, detail="Invalid item ID format")
+    
+    # Get only the fields that were explicitly set in the request
+    update_data = item.model_dump(exclude_unset=True)
+    
+    if not update_data:
+        raise HTTPException(status_code=400, detail="No fields to update")
+    
+    # Update the item in MongoDB
+    result = await collection.update_one(
+        {"_id": object_id},
+        {"$set": update_data}
+    )
+    
+    if result.matched_count == 0:
+        raise HTTPException(status_code=404, detail="Item not found")
+    
+    # Fetch and return the updated item
+    updated_item = await collection.find_one({"_id": object_id})
+    updated_item["_id"] = str(updated_item["_id"])
+    return updated_item
