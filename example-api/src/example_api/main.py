@@ -18,7 +18,7 @@ async def lifespan(app: FastAPI):
     global mongodb_client, database
     
     # Startup
-    mongodb_url = os.getenv("MONGODB_URL", "mongodb://admin:password@localhost:27017")
+    mongodb_url = os.getenv("MONGODB_URL", "mongodb://localhost:27017")
     db_name = os.getenv("MONGODB_DB_NAME", "example_api")
     
     mongodb_client = AsyncIOMotorClient(mongodb_url)
