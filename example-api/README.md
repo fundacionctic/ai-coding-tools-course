@@ -144,6 +144,24 @@ example-api/
 
 ## Development
 
+### Running Tests
+
+Tests require MongoDB to be running. Start MongoDB with docker-compose:
+
+```bash
+# Start MongoDB
+docker compose up -d mongodb
+
+# Run all tests
+uv run pytest tests/
+
+# Run tests with verbose output
+uv run pytest tests/ -v
+
+# Run a specific test
+uv run pytest tests/test_api.py::test_create_item -v
+```
+
 ### Adding Dependencies
 
 ```bash
@@ -156,10 +174,10 @@ Connect to the MongoDB instance:
 
 ```bash
 # Using mongosh (if installed locally)
-mongosh mongodb://admin:password@localhost:27017
+mongosh mongodb://localhost:27017
 
 # Using Docker
-docker compose exec mongodb mongosh -u admin -p password
+docker compose exec mongodb mongosh
 ```
 
 ### Rebuilding Docker Images
